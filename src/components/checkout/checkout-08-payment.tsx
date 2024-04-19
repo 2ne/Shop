@@ -176,7 +176,7 @@ const CheckoutPayment = forwardRef<
             <div className="flex items-center justify-center text-center gap-x-1.5">
               <span className="text-sm text-neutral-500/75">Powered by</span>
               <img
-                src="./src/assets/Go-Cardles.png"
+                src="Go-Cardles.png"
                 alt="GoCardless Logo"
                 className="relative block h-[15px] -top-px"
               />
@@ -211,7 +211,7 @@ const CheckoutPayment = forwardRef<
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
             <img
-              src="./src/assets/Go-Cardles.png"
+              src="Go-Cardles.png"
               alt="GoCardless Logo"
               className="relative block h-[15px] -top-px"
             />
@@ -230,7 +230,7 @@ const CheckoutPayment = forwardRef<
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
             <img
-              src="./src/assets/Go-Cardles.png"
+              src="Go-Cardles.png"
               alt="GoCardless Logo"
               className="relative block h-[15px] -top-px"
             />
@@ -291,7 +291,7 @@ const CheckoutPayment = forwardRef<
             <div className="flex items-center justify-center !mt-0.5 text-center gap-x-2 !-mb-0.5">
               <span className="text-sm text-neutral-500/75">Powered by</span>
               <img
-                src="./src/assets/paypal.png"
+                src="paypal.png"
                 alt="PayPal Logo"
                 className="relative block h-[23px] top-px"
               />
@@ -389,7 +389,7 @@ const CheckoutPayment = forwardRef<
             <div className="flex items-center justify-center text-center gap-x-1.5">
               <span className="text-sm text-neutral-500/75">Powered by</span>
               <img
-                src="./src/assets/landz-logo-on-white-1.jpg"
+                src="landz-logo-on-white-1.jpg"
                 alt="London & Zurich Logo"
                 className="block h-[26px] rounded-md"
               />
@@ -424,7 +424,7 @@ const CheckoutPayment = forwardRef<
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
             <img
-              src="./src/assets/landz-logo-on-white-1.jpg"
+              src="landz-logo-on-white-1.jpg"
               alt="London & Zurich Logo"
               className="block h-[26px] rounded-md"
             />
@@ -461,7 +461,7 @@ const CheckoutPayment = forwardRef<
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
             <img
-              src="./src/assets/landz-logo-on-white-1.jpg"
+              src="landz-logo-on-white-1.jpg"
               alt="London & Zurich Logo"
               className="block h-[26px] rounded-md"
             />
@@ -498,7 +498,7 @@ const CheckoutPayment = forwardRef<
           <div className="flex items-center justify-center text-center gap-x-1.5">
             <span className="text-sm text-neutral-500/75">Powered by</span>
             <img
-              src="./src/assets/landz-logo-on-white-1.jpg"
+              src="landz-logo-on-white-1.jpg"
               alt="London & Zurich Logo"
               className="block h-[26px] rounded-md"
             />

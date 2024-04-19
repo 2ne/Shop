@@ -5,84 +5,84 @@ const FinderSwim = () => {
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-1.jpg"
+            src="finder-1.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-2.jpg"
+            src="finder-2.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-3.jpg"
+            src="finder-3.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-4.jpg"
+            src="finder-4.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-5.jpg"
+            src="finder-5.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-6.jpg"
+            src="finder-6.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-7.jpg"
+            src="finder-7.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-8.jpg"
+            src="finder-8.jpg"
             alt=""
           />
         </div>
         <div>
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-9.jpg"
+            src="finder-9.jpg"
             alt=""
           />
         </div>
         <div className="max-xl:hidden">
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-10.jpg"
+            src="finder-10.jpg"
             alt=""
           />
         </div>
         <div className="max-xl:hidden">
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-11.jpg"
+            src="finder-11.jpg"
             alt=""
           />
         </div>
         <div className="max-xl:hidden">
           <img
             className="relative object-cover object-center h-full max-w-full overflow-hidden transition-opacity border-2 border-white rounded-full shadow aspect-square group shadow-neutral-900/10 ring-1 ring-neutral-600 ring-opacity-10"
-            src="./src/assets/finder-12.jpg"
+            src="finder-12.jpg"
             alt=""
           />
         </div>

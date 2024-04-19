@@ -11,11 +11,11 @@ const Skills = [
     media: [
       {
         type: "video",
-        src: "./src/assets/enter-pool.mp4",
+        src: "enter-pool.mp4",
       },
       {
         type: "video",
-        src: "./src/assets/swimming.mp4",
+        src: "swimming.mp4",
       },
     ],
   },

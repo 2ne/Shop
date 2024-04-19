@@ -2,12 +2,12 @@ import { ReactElement } from "react";
 import MerchItem from "./merch-item";
 import { BasketItem } from "../../types/types";
 
-const media = [{ url: "./src/assets/goggles.png", type: "image" }];
+const media = [{ url: "goggles.png", type: "image" }];
 
 const Goggles = (): ReactElement => {
   const item: BasketItem = {
     id: Math.random().toString(36).substring(2, 15),
-    image: "./src/assets/goggles.png",
+    image: "goggles.png",
     title: "PROGEAR® Swim Goggles",
     subTitle: "Black",
     description:

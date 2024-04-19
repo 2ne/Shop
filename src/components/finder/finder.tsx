@@ -410,7 +410,7 @@ const Finder: React.FC = () => {
                 {(() => {
                   const currentMedia =
                     Skills[currentLevel - 1]?.media?.[currentQuestionIndex];
-                  const fallbackImage = "./src/assets/finder-12.jpg";
+                  const fallbackImage = "finder-12.jpg";
                   const src = currentMedia?.src ?? fallbackImage;
                   const type = currentMedia?.type ?? "image";
 

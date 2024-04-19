@@ -1,5 +1,5 @@
 export const orgName = "Swim UK";
-export const orgLogo = "./src/assets/logo.png";
+export const orgLogo = "logo.png";
 
 export const orgColours = {
   primary: "#e4f7fb",
@@ -11,21 +11,21 @@ export const orgColours = {
 
 export const orgBanners = [
   {
-    img: "./src/assets/banner-1.jpg",
+    img: "banner-1.jpg",
     title: "Crash Courses",
     description:
       "Suitable for young swimmers, we concentrate on improving confidence and technique. Prices start from £30 a session.",
     link: "/BubbleTheSeahorse",
   },
   {
-    img: "./src/assets/banner-2.jpg",
+    img: "banner-2.jpg",
     title: "24th May - English County Championships",
     description:
       "Get your tickets for this year's championship to witness the highest level of swimming in the UK. Adult tickets are £15, while children's tickets cost £5.",
     link: "/BubbleTheSeahorse",
   },
   {
-    img: "./src/assets/banner-3.jpg",
+    img: "banner-3.jpg",
     title: "Buy your swimming gear today!",
     description:
       "We have an excellent choice of swimming equipment for all ages, including new Speedo Anti Fog goggles.",
@@ -35,47 +35,47 @@ export const orgBanners = [
 
 export const orgTiles = [
   {
-    img: "./src/assets/6f2e0f06-8900-4dc0-981a-0259989f1871.jpeg",
+    img: "6f2e0f06-8900-4dc0-981a-0259989f1871.jpeg",
     title: "Adult and Child Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/788667ca-19eb-4818-88f2-8b895dadcdf2.jpeg",
+    img: "788667ca-19eb-4818-88f2-8b895dadcdf2.jpeg",
     title: "Independent Children's Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/53602522-6ebd-4ce5-83a1-4ea35f8f1efe.jpeg",
+    img: "53602522-6ebd-4ce5-83a1-4ea35f8f1efe.jpeg",
     title: "Adult Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/58484fa4-ef77-43c0-9c6f-34d6a47be27f.jpeg",
+    img: "58484fa4-ef77-43c0-9c6f-34d6a47be27f.jpeg",
     title: "Private Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/da5cce7f-faba-46c0-b160-e0dad0d5fbb7.jpeg",
+    img: "da5cce7f-faba-46c0-b160-e0dad0d5fbb7.jpeg",
     title: "Adult and Child Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/292eec5b-ab54-41be-83ce-e70f00257b41.jpeg",
+    img: "292eec5b-ab54-41be-83ce-e70f00257b41.jpeg",
     title: "Independent Children's Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/a3ec16f6-f8ff-40d9-8f47-3d15fa85d932.jpeg",
+    img: "a3ec16f6-f8ff-40d9-8f47-3d15fa85d932.jpeg",
     title: "Adult Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/540d3059-e4e3-4ef5-a516-c24f1bed3c50.jpeg",
+    img: "540d3059-e4e3-4ef5-a516-c24f1bed3c50.jpeg",
     title: "Private Lessons",
     link: "/AdultChildLessons",
   },
   {
-    img: "./src/assets/06e8f09a-6232-4246-b75d-65739ccaade2.jpeg",
+    img: "06e8f09a-6232-4246-b75d-65739ccaade2.jpeg",
     title: "Crash Courses",
     link: "/AdultChildLessons",
   },
@@ -84,7 +84,7 @@ export const orgTiles = [
 export const orgEvents = {
   Monday: [
     {
-      img: "./src/assets/turtle.jpg",
+      img: "turtle.jpg",
       title: "Smiley the Turtle",
       description: "3-4 years",
       link: "/BubbleTheSeahorse",
@@ -97,7 +97,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -110,7 +110,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -123,7 +123,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -136,7 +136,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 1",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -148,7 +148,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -161,7 +161,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -174,7 +174,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 1",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -186,7 +186,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 2",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -198,7 +198,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 4",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -210,7 +210,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 3",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -222,7 +222,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 5",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -234,7 +234,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 3",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -246,7 +246,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 4",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -258,7 +258,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 2",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -270,7 +270,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 3",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -282,7 +282,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 5",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -294,7 +294,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/37597dfa-bf0b-4ed4-a623-0c8cb6b797f5.jpeg",
+      img: "37597dfa-bf0b-4ed4-a623-0c8cb6b797f5.jpeg",
       title: "Intermediate",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -308,7 +308,7 @@ export const orgEvents = {
   ],
   Tuesday: [
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 2",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -320,7 +320,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
+      img: "daf56b3e-5501-4f6d-8927-ce45adf67f1d.jpeg",
       title: "Stage 1",
       link: "/BubbleTheSeahorse",
       address: "Little Thetford",
@@ -332,7 +332,7 @@ export const orgEvents = {
       productGroup: "Independent Children's Lessons",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -345,7 +345,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -358,7 +358,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -373,7 +373,7 @@ export const orgEvents = {
   ],
   Wednesday: [
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -386,7 +386,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -399,7 +399,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -412,7 +412,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -425,7 +425,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -438,7 +438,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -453,7 +453,7 @@ export const orgEvents = {
   ],
   Thursday: [
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -466,7 +466,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/Clown.jpg",
+      img: "Clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -479,7 +479,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -492,7 +492,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -505,7 +505,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -518,7 +518,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -531,7 +531,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -544,7 +544,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/Clown.jpg",
+      img: "Clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -557,7 +557,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -572,7 +572,7 @@ export const orgEvents = {
   ],
   Friday: [
     {
-      img: "./src/assets/turtle.jpg",
+      img: "turtle.jpg",
       title: "Smiley the Turtle",
       description: "3-4 years",
       link: "/BubbleTheSeahorse",
@@ -585,7 +585,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -598,7 +598,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -611,7 +611,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -624,7 +624,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -637,7 +637,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -652,7 +652,7 @@ export const orgEvents = {
   ],
   Saturday: [
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -665,7 +665,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle the Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -684,7 +684,7 @@ export const orgEvents = {
 export const orgClassEvents = {
   Monday: [
     {
-      img: "./src/assets/turtle.jpg",
+      img: "turtle.jpg",
       title: "Smiley the Turtle",
       description: "3-4 years",
       link: "/BubbleTheSeahorse",
@@ -695,7 +695,7 @@ export const orgClassEvents = {
       colour: "emerald",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -706,7 +706,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -717,7 +717,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -728,7 +728,7 @@ export const orgClassEvents = {
       colour: "red",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -739,7 +739,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -752,7 +752,7 @@ export const orgClassEvents = {
   ],
   Tuesday: [
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -763,7 +763,7 @@ export const orgClassEvents = {
       colour: "indigo",
     },
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -774,7 +774,7 @@ export const orgClassEvents = {
       colour: "sky",
     },
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -787,7 +787,7 @@ export const orgClassEvents = {
   ],
   Wednesday: [
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -798,7 +798,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -809,7 +809,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -820,7 +820,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -831,7 +831,7 @@ export const orgClassEvents = {
       colour: "indigo",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -842,7 +842,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -855,7 +855,7 @@ export const orgClassEvents = {
   ],
   Thursday: [
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -866,7 +866,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/Clown.jpg",
+      img: "Clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -877,7 +877,7 @@ export const orgClassEvents = {
       colour: "orange",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -888,7 +888,7 @@ export const orgClassEvents = {
       colour: "indigo",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -899,7 +899,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -910,7 +910,7 @@ export const orgClassEvents = {
       colour: "red",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -921,7 +921,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/seahorse.jpg",
+      img: "seahorse.jpg",
       title: "Bubble the Seahorse",
       description: "12-18 months",
       link: "/BubbleTheSeahorse",
@@ -932,7 +932,7 @@ export const orgClassEvents = {
       colour: "indigo",
     },
     {
-      img: "./src/assets/Clown.jpg",
+      img: "Clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -943,7 +943,7 @@ export const orgClassEvents = {
       colour: "orange",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -956,7 +956,7 @@ export const orgClassEvents = {
   ],
   Friday: [
     {
-      img: "./src/assets/turtle.jpg",
+      img: "turtle.jpg",
       title: "Smiley the Turtle",
       description: "3-4 years",
       link: "/BubbleTheSeahorse",
@@ -967,7 +967,7 @@ export const orgClassEvents = {
       colour: "emerald",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -978,7 +978,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/jelly.jpg",
+      img: "jelly.jpg",
       title: "Jelly the Jellyfish",
       description: "2-3 years",
       link: "/BubbleTheSeahorse",
@@ -989,7 +989,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -1000,7 +1000,7 @@ export const orgClassEvents = {
       colour: "red",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle The Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",
@@ -1011,7 +1011,7 @@ export const orgClassEvents = {
       colour: "pink",
     },
     {
-      img: "./src/assets/crab.jpg",
+      img: "crab.jpg",
       title: "Snappy the Crab",
       description: "18-24 months",
       link: "/BubbleTheSeahorse",
@@ -1024,7 +1024,7 @@ export const orgClassEvents = {
   ],
   Saturday: [
     {
-      img: "./src/assets/dolphin.jpg",
+      img: "dolphin.jpg",
       title: "Danny the Dolphin (SEND)",
       description: "4-5 years",
       link: "/BubbleTheSeahorse",
@@ -1035,7 +1035,7 @@ export const orgClassEvents = {
       colour: "sky",
     },
     {
-      img: "./src/assets/starfish.jpg",
+      img: "starfish.jpg",
       title: "Twinkle the Starfish",
       description: "6-12 months",
       link: "/BubbleTheSeahorse",

@@ -5,7 +5,7 @@ const events = [
     id: 1,
     date: "Tuesday at 10:00 - 11:00 on May 10th",
     name: "Bubble the Seahorse",
-    imageUrl: "./src/assets/seahorse.jpg",
+    imageUrl: "seahorse.jpg",
     location: "Quarterway House, Ely Rd, Little Thetford",
     status: "Paid",
     participant: "Jacob Toone",
@@ -14,7 +14,7 @@ const events = [
     id: 1,
     date: "Tuesday at 10:00 - 11:00 on May 17th",
     name: "Bubble the Seahorse",
-    imageUrl: "./src/assets/seahorse.jpg",
+    imageUrl: "seahorse.jpg",
     location: "Quarterway House, Ely Rd, Little Thetford",
 
     status: "Awaiting payment",

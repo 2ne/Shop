@@ -18,9 +18,9 @@ function BubbleTheSeahorse(): ReactElement {
   ];
 
   const media = [
-    { url: "./src/assets/seahorse.jpg", type: "image" },
-    { url: "./src/assets/finder-3.jpg", type: "image" },
-    { url: "./src/assets/enter-pool.mp4", type: "video" },
+    { url: "seahorse.jpg", type: "image" },
+    { url: "finder-3.jpg", type: "image" },
+    { url: "enter-pool.mp4", type: "video" },
     { url: "https://www.youtube.com/watch?v=LijdyVaaDnY", type: "youtube" },
   ];
 
@@ -28,7 +28,7 @@ function BubbleTheSeahorse(): ReactElement {
 
   const item: BasketItem = {
     id: Math.random().toString(36).substring(2, 15),
-    image: "./src/assets/seahorse.jpg",
+    image: "seahorse.jpg",
     title: "Bubble the Seahorse",
     subTitle: "Every Tuesday at 11:30 - 12:00",
     dates: "4th April - 25th April",
@@ -41,10 +41,10 @@ function BubbleTheSeahorse(): ReactElement {
     coachDescription: `Michael Fred Phelps II (born June 30, 1985) is an American former competitive swimmer. He is the most successful and most decorated Olympian of all time with a total of 28 medals. Phelps also holds the all-time records for Olympic gold medals (23), Olympic gold medals in individual events (13), and Olympic medals in individual events (16). At the 2004 Summer Olympics in Athens, Phelps tied the record of eight medals of any colour at a single Games, held by gymnast Alexander Dityatin, by winning six gold and two bronze medals.
   
     Four years later, when he won eight gold medals at the 2008 Beijing Games, he broke fellow American swimmer Mark Spitz's 1972 record of seven first-place finishes at any single Olympic Games. At the 2012 Summer Olympics in London, Phelps won four gold and two silver medals, and at the 2016 Summer Olympics in Rio de Janeiro, he won five gold medals and one silver. This made him the most successful athlete of the Games for the fourth Olympics in a row.`,
-    coachImage: "./src/assets/Michael_Phelp.jpg",
+    coachImage: "Michael_Phelp.jpg",
     requiredProduct: {
       id: Math.random().toString(36).substring(2, 15),
-      image: "./src/assets/finder-4.jpg",
+      image: "finder-4.jpg",
       dates: "April 2023 - April 2024",
       title: "Swimming Membership",
       subTitle: "12 months",
@@ -246,6 +246,7 @@ function BubbleTheSeahorse(): ReactElement {
                   You will be billed every month on the 1st. This is an
                   auto-renewing product.
                 </dd>
+                <dd>Premium of £2 per instalment.</dd>
                 <dt>Pro rata</dt>
                 <dd>
                   Final cost at checkout may vary depending on the time or

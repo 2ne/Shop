@@ -73,7 +73,7 @@ const CheckoutAdditionalProducts = forwardRef<
         content: (
           <div className="flex gap-4 py-1 text-sm item">
             <img
-              src="../src/assets/seahorse.jpg"
+              src=".seahorse.jpg"
               className="object-contain object-center w-12 h-12 my-auto rounded mix-blend-multiply"
             />
             <div className="flex-grow min-w-0">

@@ -2,12 +2,12 @@ import { ReactElement } from "react";
 import MerchItem from "./merch-item";
 import { BasketItem } from "../../types/types";
 
-const media = [{ url: "./src/assets/bag-2.jpg", type: "image" }];
+const media = [{ url: "bag-2.jpg", type: "image" }];
 
 const Bag2 = (): ReactElement => {
   const item: BasketItem = {
     id: Math.random().toString(36).substring(2, 15),
-    image: "./src/assets/bag-2.jpg",
+    image: "bag-2.jpg",
     title: "Zip High Wall Tote",
     subTitle: "White and blue",
     description:

@@ -21,7 +21,7 @@ function SwmmingMembership(): ReactElement {
     { label: "Swimming Membership", link: "/SwimmingMembership" },
   ];
 
-  const images = ["./src/assets/finder-4.jpg"];
+  const images = ["finder-4.jpg"];
 
   const extractYouTubeID = (url: string) => {
     const parsedUrl = new URL(url);
@@ -40,7 +40,7 @@ function SwmmingMembership(): ReactElement {
 
   const item = {
     id: Math.random().toString(36).substring(2, 15),
-    image: "./src/assets/finder-4.jpg",
+    image: "finder-4.jpg",
     title: "Swimming Membership",
     subTitle: "12 months",
     price: "£120.00",
