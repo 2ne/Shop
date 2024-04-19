@@ -466,7 +466,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "Clown.jpg",
+      img: "clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -544,7 +544,7 @@ export const orgEvents = {
       productGroup: "Adult and Child Lessons",
     },
     {
-      img: "Clown.jpg",
+      img: "clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -866,7 +866,7 @@ export const orgClassEvents = {
       colour: "violet",
     },
     {
-      img: "Clown.jpg",
+      img: "clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
@@ -932,7 +932,7 @@ export const orgClassEvents = {
       colour: "indigo",
     },
     {
-      img: "Clown.jpg",
+      img: "clown.jpg",
       title: "Carl the Clownfish",
       description: "3-6 months",
       link: "/BubbleTheSeahorse",
