@@ -246,7 +246,7 @@ function BubbleTheSeahorse(): ReactElement {
                   You will be billed every month on the 1st. This is an
                   auto-renewing product.
                 </dd>
-                <dd>Premium of £2 per instalment.</dd>
+                {/* <dd>Premium of £2 per instalment.</dd> */}
                 <dt>Pro rata</dt>
                 <dd>
                   Final cost at checkout may vary depending on the time or
