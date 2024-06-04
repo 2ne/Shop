@@ -1,4 +1,4 @@
-import { Alert, Button, Tooltip } from "antd";
+import { Alert, Button, Modal, Tooltip } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBasketContext } from "./basket-context";
@@ -42,12 +42,14 @@ const Basket: React.FC = () => {
     setCount(1);
   };
 
-  /* CHECKOUT ERROR  Modal.error({
-    title: "Checkout error",
-    content:
-      "Sorry cannot complete checkout, please review the items in your basket.",
-    okText: "Return to basket",
-  }); */
+  if (itemError) {
+    Modal.error({
+      title: "Checkout error",
+      content:
+        "Sorry cannot complete checkout, please review the items in your basket.",
+      okText: "Return to basket",
+    });
+  }
 
   return (
     <>
