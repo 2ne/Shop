@@ -147,12 +147,12 @@ function CreateAccountInvite(): ReactElement {
                   }
                 />
 
-                <div className="relative p-4 space-y-4 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
+                <div className="relative p-4 space-y-3.5 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
                   <div className="flex items-center gap-3 pb-4 border-b">
                     <img
                       src="https://i.ibb.co/dWTrvXQ/ED3-NSn-XWw-AASf-K1.jpg"
                       alt="U 10 Girls Photo"
-                      className="object-contain object-center w-18 h-auto max-h-[3.85rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
+                      className="object-contain object-center w-18 h-auto max-h-[3.95rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
                     />
                     <div className="grid items-center flex-1 min-w-0">
                       <div>
@@ -166,7 +166,7 @@ function CreateAccountInvite(): ReactElement {
                   </div>
                   <div>
                     <div>
-                      <div className="flex items-center mb-1 space-x-1">
+                      <div className="flex items-center mb-0.5 space-x-1">
                         <span className="text-neutral-500">Player</span>
                         <span className="text-neutral-500">·</span>
                         <span className="font-medium">Jacob Toone</span>
