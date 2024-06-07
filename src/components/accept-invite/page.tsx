@@ -9,9 +9,9 @@ import FormHeader from "../form-header";
 import { Link } from "react-router-dom";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 
-function AcceptInvite(): ReactElement {
+function CreateAccountInvite(): ReactElement {
   const breadcrumbItems = [
-    { label: "Create a JoinIn account", link: "/AcceptInvite" },
+    { label: "Create a JoinIn account", link: "/CreateAccountInvite" },
   ];
 
   const [setPasswordForm] = Form.useForm();
@@ -124,7 +124,6 @@ function AcceptInvite(): ReactElement {
                 <FormHeader
                   title="jamestoone@gmail.com"
                   subtitle="We are delighted to invite Jacob Toone to join the U10 Girls Squad at North Sheilds FC"
-                  requiredText="Secure your account with a strong password"
                   icon={
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                       <circle
@@ -146,103 +145,104 @@ function AcceptInvite(): ReactElement {
                     </svg>
                   }
                 />
-
-                <div className="relative p-4 space-y-3.5 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
-                  <div className="flex items-center gap-3 pb-4 border-b">
-                    <img
-                      src="https://i.ibb.co/dWTrvXQ/ED3-NSn-XWw-AASf-K1.jpg"
-                      alt="U 10 Girls Photo"
-                      className="object-contain object-center w-18 h-auto max-h-[3.95rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
-                    />
-                    <div className="grid items-center flex-1 min-w-0">
+                <div className="space-y-4">
+                  <div className="relative p-4 space-y-3.5 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
+                    <div className="flex items-center gap-3 pb-4 border-b">
+                      <img
+                        src="https://i.ibb.co/dWTrvXQ/ED3-NSn-XWw-AASf-K1.jpg"
+                        alt="U 10 Girls Photo"
+                        className="object-contain object-center w-18 h-auto max-h-[3.95rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
+                      />
+                      <div className="grid items-center flex-1 min-w-0">
+                        <div>
+                          <div className="font-medium">U10 Girls Squad</div>
+                          <div className="text-neutral-500">12 months</div>
+                          <div className="pt-1.5 mt-auto text-neutral-500/75">
+                            £20.00 · per month
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
                       <div>
-                        <div className="font-medium">U10 Girls Squad</div>
-                        <div className="text-neutral-500">12 months</div>
-                        <div className="pt-1.5 mt-auto text-neutral-500/75">
-                          £20.00 · per month
+                        <div className="flex items-center mb-0.5 space-x-1">
+                          <span className="text-neutral-500">Player</span>
+                          <span className="text-neutral-500">·</span>
+                          <span className="font-medium">Jacob Toone</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div>
-                      <div className="flex items-center mb-0.5 space-x-1">
-                        <span className="text-neutral-500">Player</span>
-                        <span className="text-neutral-500">·</span>
-                        <span className="font-medium">Jacob Toone</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <Form
-                  layout="vertical"
-                  form={setPasswordForm}
-                  name="setPasswordForm"
-                  onFinish={onDetailsFinish}
-                  onFinishFailed={onDetailsFinishFailed}
-                  className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
-                  requiredMark="optional"
-                >
-                  <Form.Item
-                    className="!mb-2"
-                    label="Set password"
-                    name="new-password"
-                    rules={[
-                      { required: true, message: "Please enter a password" },
-                    ]}
+                  <Form
+                    layout="vertical"
+                    form={setPasswordForm}
+                    name="setPasswordForm"
+                    onFinish={onDetailsFinish}
+                    onFinishFailed={onDetailsFinishFailed}
+                    className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
+                    requiredMark="optional"
                   >
-                    <Input.Password
+                    <Form.Item
+                      className="!mb-2"
+                      label="Set password"
                       name="new-password"
-                      autoComplete="new-password"
-                    />
-                  </Form.Item>
-                  <Form.Item
-                    name="acceptTermsConditions"
-                    valuePropName="checked"
-                    className="!mb-0"
-                    rules={[
-                      {
-                        required: true,
-                        validator: async (_, value) => {
-                          if (!value) {
-                            return Promise.reject(
-                              new Error(
-                                "Please accept terms to create an account"
-                              )
-                            );
-                          }
-                          return Promise.resolve();
+                      rules={[
+                        { required: true, message: "Please enter a password" },
+                      ]}
+                    >
+                      <Input.Password
+                        name="new-password"
+                        autoComplete="new-password"
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name="acceptTermsConditions"
+                      valuePropName="checked"
+                      className="!mb-0"
+                      rules={[
+                        {
+                          required: true,
+                          validator: async (_, value) => {
+                            if (!value) {
+                              return Promise.reject(
+                                new Error(
+                                  "Please accept terms to create an account"
+                                )
+                              );
+                            }
+                            return Promise.resolve();
+                          },
                         },
-                      },
-                    ]}
-                  >
-                    <Checkbox
-                      onChange={handleTermsChange}
-                      checked={acceptTermsConditions}
+                      ]}
                     >
-                      I agree with the{" "}
-                      <Link
-                        to="https://ant.design"
-                        target="_blank"
-                        className="link"
+                      <Checkbox
+                        onChange={handleTermsChange}
+                        checked={acceptTermsConditions}
                       >
-                        Terms & Conditions
-                      </Link>
-                    </Checkbox>
-                  </Form.Item>
-                  <Form.Item
-                    className="!mb-0"
-                    name="acceptMarketing"
-                    valuePropName="checked"
-                  >
-                    <Checkbox
-                      onChange={handleMarketingChange}
-                      checked={acceptMarketing}
+                        I agree with the{" "}
+                        <Link
+                          to="https://ant.design"
+                          target="_blank"
+                          className="link"
+                        >
+                          Terms & Conditions
+                        </Link>
+                      </Checkbox>
+                    </Form.Item>
+                    <Form.Item
+                      className="!mb-0"
+                      name="acceptMarketing"
+                      valuePropName="checked"
                     >
-                      Receive updates from JoinIn
-                    </Checkbox>
-                  </Form.Item>
-                </Form>
+                      <Checkbox
+                        onChange={handleMarketingChange}
+                        checked={acceptMarketing}
+                      >
+                        Receive updates from JoinIn
+                      </Checkbox>
+                    </Form.Item>
+                  </Form>
+                </div>
               </div>
 
               <div className="pt-2 mt-4 max-lg:hidden lg:mt-6">
@@ -275,4 +275,4 @@ function AcceptInvite(): ReactElement {
   );
 }
 
-export default AcceptInvite;
+export default CreateAccountInvite;
