@@ -57,7 +57,7 @@ function AcceptInvite(): ReactElement {
                 </span>
               </div>
               <div className="mb-6 sub-heading-sm">
-                Join CG Swim School on JoinIn! Seamlessly manage bookings and
+                Join North Sheilds FC on JoinIn! Seamlessly manage bookings and
                 payments while experiencing our swift checkout and paperless
                 solution.
               </div>

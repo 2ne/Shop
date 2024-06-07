@@ -1,12 +1,12 @@
-export const orgName = "Swim UK";
-export const orgLogo = "logo.png";
+export const orgName = "North Sheilds FC";
+export const orgLogo = "badge.png";
 
 export const orgColours = {
-  primary: "#e4f7fb",
-  primary_text: "#005da2",
-  secondary: "#005da2",
+  primary: "#fff5f5",
+  primary_text: "#d9252e",
+  secondary: "#d9252e",
   secondary_text: "#ffffff",
-  interactive: "#005da2",
+  interactive: "#d9252e",
 };
 
 export const orgBanners = [
