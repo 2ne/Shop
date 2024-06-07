@@ -23,8 +23,7 @@ import Bag1 from "./shop/merch/bag-1";
 import Bag2 from "./shop/merch/bag-2";
 import Bag3 from "./shop/merch/bag-3";
 import Bag4 from "./shop/merch/bag-4";
-import setAccountPassword from "./components/set-account-password/page";
-import SetAccountPassword from "./components/set-account-password/page";
+import CreateAccountInvite from "./components/create-account-invite/page";
 
 function App(): ReactElement {
   return (
@@ -62,8 +61,8 @@ function App(): ReactElement {
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
               <Route
-                path="/SetAccountPassword"
-                element={<SetAccountPassword />}
+                path="/CreateAccountInvite"
+                element={<CreateAccountInvite />}
               />
               <Route path="/Contact" element={<Contact />} />
               <Route path="*" element={<Home />} />

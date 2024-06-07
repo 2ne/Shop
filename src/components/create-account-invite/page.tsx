@@ -9,9 +9,9 @@ import FormHeader from "../form-header";
 import { Link } from "react-router-dom";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
 
-function SetAccountPassword(): ReactElement {
+function CreateAccountInvite(): ReactElement {
   const breadcrumbItems = [
-    { label: "Create a JoinIn account", link: "/SetAccountPassword" },
+    { label: "Create a JoinIn account", link: "/CreateAccountInvite" },
   ];
 
   const [setPasswordForm] = Form.useForm();
@@ -147,7 +147,7 @@ function SetAccountPassword(): ReactElement {
                   }
                 />
 
-                <div className="relative p-4 space-y-4 text-sm text-left bg-white rounded-md shadow ring-1 ring-opacity-5 ring-black ">
+                <div className="relative p-4 space-y-4 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
                   <div className="flex items-center gap-3 pb-4 border-b">
                     <img
                       src="https://i.ibb.co/dWTrvXQ/ED3-NSn-XWw-AASf-K1.jpg"
@@ -275,4 +275,4 @@ function SetAccountPassword(): ReactElement {
   );
 }
 
-export default SetAccountPassword;
+export default CreateAccountInvite;
