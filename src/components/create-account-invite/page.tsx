@@ -151,7 +151,7 @@ function CreateAccountInvite(): ReactElement {
                       <img
                         src="https://i.ibb.co/dWTrvXQ/ED3-NSn-XWw-AASf-K1.jpg"
                         alt="U 10 Girls Photo"
-                        className="object-contain object-center w-18 h-auto max-h-[3.95rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
+                        className="object-contain object-center w-18 h-auto max-h-[3.85rem] rounded-md shadow ring-1 ring-black/5 border-2 border-white"
                       />
                       <div className="grid items-center flex-1 min-w-0">
                         <div>
