@@ -167,8 +167,6 @@ export const CreateAccountForm: React.FC = () => {
     }
   };
 
-  const totalSteps = stepsData.length;
-
   return (
     <motion.div
       initial={{ opacity: 0, translateY: -20 }}

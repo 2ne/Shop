@@ -23,6 +23,8 @@ import Bag1 from "./shop/merch/bag-1";
 import Bag2 from "./shop/merch/bag-2";
 import Bag3 from "./shop/merch/bag-3";
 import Bag4 from "./shop/merch/bag-4";
+import setAccountPassword from "./components/set-account-password/page";
+import SetAccountPassword from "./components/set-account-password/page";
 
 function App(): ReactElement {
   return (
@@ -59,6 +61,10 @@ function App(): ReactElement {
               <Route path="/Timetable" element={<Timetable />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
+              <Route
+                path="/SetAccountPassword"
+                element={<SetAccountPassword />}
+              />
               <Route path="/Contact" element={<Contact />} />
               <Route path="*" element={<Home />} />
             </Routes>

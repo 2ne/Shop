@@ -9,9 +9,10 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items?: BreadcrumbItem[];
+  title?: string;
 }
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, title }) => {
   return (
     <div className="relative bg-secondary text-secondary_text">
       <Wrapper className="!p-0">
@@ -20,7 +21,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
             role="list"
             className="flex items-center h-10 px-4 sm:space-x-0.5 overflow-x-auto"
           >
-            {!items && (
+            {!items && title && <div>{title}</div>}
+            {!items && !title && (
               <li>
                 <div className="flex items-center">
                   <div className="flex items-center sm:gap-x-0.5">
