@@ -24,6 +24,7 @@ import Bag2 from "./shop/merch/bag-2";
 import Bag3 from "./shop/merch/bag-3";
 import Bag4 from "./shop/merch/bag-4";
 import CreateAccountInvite from "./components/create-account-invite/page";
+import AcceptInvite from "./components/accept-invite/page";
 
 function App(): ReactElement {
   return (
@@ -64,6 +65,7 @@ function App(): ReactElement {
                 path="/CreateAccountInvite"
                 element={<CreateAccountInvite />}
               />
+              <Route path="/AcceptInvite" element={<AcceptInvite />} />
               <Route path="/Contact" element={<Contact />} />
               <Route path="*" element={<Home />} />
             </Routes>
