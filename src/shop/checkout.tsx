@@ -32,7 +32,6 @@ import Main from "../components/main";
 import Wrapper from "../components/wrapper";
 import { useBasketContext } from "../components/basket/basket-context";
 import Steps from "../components/steps";
-
 export const Checkout: React.FC = () => {
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
@@ -49,8 +48,9 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
-      title: "Who are you buying for",
-      subtitle: "Please select who you are purchasing each product for",
+      title: "Player information",
+      subtitle:
+        "Please provide the details of the player to be added to the squad",
       buttonType: "continue",
     },
     {
