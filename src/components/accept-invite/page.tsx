@@ -57,9 +57,10 @@ function CreateAccountInvite(): ReactElement {
                 </span>
               </div>
               <div className="mb-6 sub-heading-sm">
-                Join North Sheilds FC on JoinIn! Seamlessly manage bookings and
-                payments while experiencing our swift checkout and paperless
-                solution.
+                Join North Sheilds FC on JoinIn! on JoinIn! Easily manage your
+                payments, update your personal information, and keep track of
+                your upcoming activities. Access North Sheilds FC's booking site
+                anytime to make new bookings.
               </div>
               <nav aria-label="Progress">
                 <ol role="list" className="overflow-hidden">
