@@ -123,7 +123,7 @@ function CreateAccountInvite(): ReactElement {
               <div className="space-y-4 lg:space-y-6">
                 <FormHeader
                   title="jamestoone@gmail.com"
-                  subtitle="Jacob Toone is invited to join the U10 Girls Squad at North Sheilds FC"
+                  subtitle="Jacob Toone has been added to the U10 Girls Squad at North Sheilds FC"
                   icon={
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                       <circle
