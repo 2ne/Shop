@@ -7,14 +7,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button, Form, Input } from "antd";
 import FormHeader from "../form-header";
 
-function SignUpInvite(): ReactElement {
+interface SignUpNotifyProps {
+  requiredProduct: boolean;
+}
+
+function SignUpNotify({
+  requiredProduct = false,
+}: SignUpNotifyProps): ReactElement {
   const breadcrumbItems = [
-    { label: "Sign into JoinIn", link: "/SignUpInvite" },
+    { label: "Sign into JoinIn", link: "/SignUpNotify" },
   ];
 
   const [loginForm] = Form.useForm();
 
-  // This function is called when the form is submitted
   const onDetailsFinish = () => {
     console.log("TO DO");
   };
@@ -81,25 +86,47 @@ function SignUpInvite(): ReactElement {
                       </span>
                     </a>
                   </li>
-                  <li className="pb-8 relative [&:last-child>div]:hidden">
-                    <div
-                      className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-neutral-300"
-                      aria-hidden="true"
-                    />
-                    <a href="#" className="relative flex items-start group">
-                      <span
-                        className="flex items-center h-8"
+                  {!requiredProduct ? (
+                    <li className="pb-8 relative [&:last-child>div]:hidden">
+                      <div
+                        className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-neutral-300"
                         aria-hidden="true"
-                      >
-                        <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400" />
-                      </span>
-                      <span className="flex items-center h-8 min-w-0 ml-3">
-                        <span className="text-sm font-medium text-neutral-500">
-                          <span className="">Checkout</span>
+                      />
+                      <a href="#" className="relative flex items-start group">
+                        <span
+                          className="flex items-center h-8"
+                          aria-hidden="true"
+                        >
+                          <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400" />
                         </span>
-                      </span>
-                    </a>
-                  </li>
+                        <span className="flex items-center h-8 min-w-0 ml-3">
+                          <span className="text-sm font-medium text-neutral-500">
+                            <span className="">Verify details</span>
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  ) : (
+                    <li className="pb-8 relative [&:last-child>div]:hidden">
+                      <div
+                        className="absolute left-3.5 top-8 rounded-full -ml-px mt-0.5 bottom-0.5 w-0.5 bg-neutral-300"
+                        aria-hidden="true"
+                      />
+                      <a href="#" className="relative flex items-start group">
+                        <span
+                          className="flex items-center h-8"
+                          aria-hidden="true"
+                        >
+                          <span className="relative z-10 flex items-center justify-center transition-colors bg-white border-2 rounded-full w-7 h-7 border-neutral-300 group-hover:border-neutral-400" />
+                        </span>
+                        <span className="flex items-center h-8 min-w-0 ml-3">
+                          <span className="text-sm font-medium text-neutral-500">
+                            <span className="">Checkout</span>
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  )}
                 </ol>
               </nav>
             </div>
@@ -133,6 +160,7 @@ function SignUpInvite(): ReactElement {
                     </svg>
                   }
                 />
+
                 <div className="space-y-4">
                   <div className="relative p-4 space-y-3.5 text-sm text-left bg-white border-l-4 rounded-md shadow border-interactive ring-1 ring-opacity-5 ring-black ">
                     <div className="flex items-center gap-3 pb-4 border-b">
@@ -161,49 +189,50 @@ function SignUpInvite(): ReactElement {
                       </div>
                     </div>
                   </div>
-                  <Form
-                    layout="vertical"
-                    form={loginForm}
-                    name="setPasswordForm"
-                    onFinish={onDetailsFinish}
-                    onFinishFailed={onDetailsFinishFailed}
-                    className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
-                    requiredMark="optional"
-                  >
-                    <Form.Item
-                      label="Email"
-                      name="email-address"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter your email address",
-                        },
-                      ]}
-                    >
-                      <Input
-                        type="email"
-                        placeholder="jamestoone@gmail.com"
-                        disabled={true}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      className="!mb-2"
-                      label="Password"
-                      name="new-password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please enter your password",
-                        },
-                      ]}
-                    >
-                      <Input.Password
-                        name="new-password"
-                        autoComplete="new-password"
-                      />
-                    </Form.Item>
-                  </Form>
                 </div>
+
+                <Form
+                  layout="vertical"
+                  form={loginForm}
+                  name="setPasswordForm"
+                  onFinish={onDetailsFinish}
+                  onFinishFailed={onDetailsFinishFailed}
+                  className="relative p-4 text-sm text-left bg-white rounded-md shadow hide-validation-asterix ring-1 ring-black ring-opacity-5"
+                  requiredMark="optional"
+                >
+                  <Form.Item
+                    label="Email"
+                    name="email-address"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your email address",
+                      },
+                    ]}
+                  >
+                    <Input
+                      type="email"
+                      placeholder="jamestoone@gmail.com"
+                      disabled={true}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    className="!mb-2"
+                    label="Password"
+                    name="new-password"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your password",
+                      },
+                    ]}
+                  >
+                    <Input.Password
+                      name="new-password"
+                      autoComplete="new-password"
+                    />
+                  </Form.Item>
+                </Form>
               </div>
               <div className="pt-2 mt-4 max-lg:hidden lg:mt-6">
                 <Button
@@ -235,4 +264,4 @@ function SignUpInvite(): ReactElement {
   );
 }
 
-export default SignUpInvite;
+export default SignUpNotify;

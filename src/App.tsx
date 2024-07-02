@@ -23,8 +23,8 @@ import Bag1 from "./shop/merch/bag-1";
 import Bag2 from "./shop/merch/bag-2";
 import Bag3 from "./shop/merch/bag-3";
 import Bag4 from "./shop/merch/bag-4";
-import CreateAccountInvite from "./components/create-account-invite/page";
-import SignUpInvite from "./components/sign-up-invite/page";
+import CreateAccountNotify from "./components/create-account-invite/page";
+import SignUpNotify from "./components/sign-up-invite/page";
 
 function App(): ReactElement {
   return (
@@ -62,10 +62,10 @@ function App(): ReactElement {
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
               <Route
-                path="/CreateAccountInvite"
-                element={<CreateAccountInvite />}
+                path="/CreateAccountNotify"
+                element={<CreateAccountNotify />}
               />
-              <Route path="/SignUpInvite" element={<SignUpInvite />} />
+              <Route path="/SignUpNotify" element={<SignUpNotify />} />
               <Route path="/Contact" element={<Contact />} />
               <Route path="*" element={<Home />} />
             </Routes>
