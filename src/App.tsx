@@ -23,8 +23,6 @@ import Bag1 from "./shop/merch/bag-1";
 import Bag2 from "./shop/merch/bag-2";
 import Bag3 from "./shop/merch/bag-3";
 import Bag4 from "./shop/merch/bag-4";
-import CreateAccountNotify from "./components/create-account-invite/page";
-import SignUpNotify from "./components/sign-up-invite/page";
 
 function App(): ReactElement {
   return (
@@ -61,11 +59,6 @@ function App(): ReactElement {
               <Route path="/Timetable" element={<Timetable />} />
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/CreateAccount" element={<CreateAccount />} />
-              <Route
-                path="/CreateAccountNotify"
-                element={<CreateAccountNotify />}
-              />
-              <Route path="/SignUpNotify" element={<SignUpNotify />} />
               <Route path="/Contact" element={<Contact />} />
               <Route path="*" element={<Home />} />
             </Routes>
