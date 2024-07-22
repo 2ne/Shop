@@ -890,6 +890,7 @@ const Header: React.FC<HeaderProps> = ({
                           </div>
                         </Button>
                         <Button
+                          onClick={() => setIsAccountModalOpen(true)}
                           block
                           type="text"
                           className="!justify-start !font-normal"
