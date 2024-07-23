@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Modal, Menu, MenuProps, message } from "antd";
 import AccountCalendar from "./account-calendar";
 import AccountPayments from "./account-payments";
@@ -22,6 +22,12 @@ const AccountModal: React.FC<AccountModalProps> = ({
   selectedMenuKey,
   setSelectedMenuKey,
 }) => {
+  useEffect(() => {
+    if (!selectedMenuKey) {
+      setSelectedMenuKey("calendar");
+    }
+  }, [selectedMenuKey, setSelectedMenuKey]);
+
   const handleLogout = () => {
     message.success("Successfully signed out");
     setTimeout(() => {
@@ -236,22 +242,6 @@ const AccountModal: React.FC<AccountModalProps> = ({
             selectedKeys={[selectedMenuKey]}
             onSelect={handleMenuSelect}
           />
-          <button
-            type="button"
-            className="flex items-center w-full h-10 gap-2.5 px-4 transition-colors rounded-md hover:bg-error/5 hover:text-error"
-            onClick={handleLogout}
-          >
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M15.75 8.75l3.5 3.25-3.5 3.25M19 12h-8.25M15.25 4.75h-8.5a2 2 0 00-2 2v10.5a2 2 0 002 2h8.5"
-              ></path>
-            </svg>
-            <span>Sign out</span>
-          </button>
         </aside>
         <div className="">
           {selectedMenuKey === "calendar" && <AccountCalendar />}
