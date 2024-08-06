@@ -164,7 +164,7 @@ const CheckoutAdditionalProducts = forwardRef<
                             </span>
                           </div>
                           <div>
-                            <Select
+                            {/*        <Select
                               showSearch
                               className="w-full"
                               placeholder="Select membership..."
@@ -187,7 +187,7 @@ const CheckoutAdditionalProducts = forwardRef<
                                   {option.content}
                                 </Option>
                               ))}
-                            </Select>
+                            </Select> */}
                             <div className="mt-4">
                               <Button
                                 danger={addItemToBasket === false}

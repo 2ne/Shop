@@ -48,9 +48,8 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
-      title: "Player information",
-      subtitle:
-        "Please provide the details of the player to be added to the squad",
+      title: "Who are you buying for",
+      subtitle: "Please select who you are purchasing each product for",
       buttonType: "continue",
     },
     {
