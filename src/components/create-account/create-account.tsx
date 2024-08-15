@@ -58,7 +58,7 @@ export const CreateAccountForm: React.FC = () => {
       ref: emailVerificationRef,
       title: "Email verification",
       subtitle:
-        "Account created succesfully. Please check your email. We sent a verification link to jtoone@loveadmin.com",
+        "Account created succesfully. Please check your email. We sent a verification PIN to jtoone@loveadmin.com",
       buttonType: "verifyAccount",
     },
   ];
