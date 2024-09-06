@@ -136,7 +136,7 @@ const SignInModal: React.FC<SignInProps> = ({
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-            <div className="mb-6">
+            <div className="mb-5">
               <Button className="flex items-center justify-center w-full mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
