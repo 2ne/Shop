@@ -114,7 +114,14 @@ const Footer: React.FC = () => {
         <hr className="my-6 border-neutral-300/50 sm:mx-auto lg:my-8" />
         <div className="flex items-center justify-between">
           <div className="hidden text-sm sm:block text-neutral-500">
-            © {new Date().getFullYear()} All rights reserved
+            <span className="text-neutral-400">Powered by </span>
+            <a
+              href="https://loveadmin.com"
+              target="_blank"
+              className="text-interactive hover:underline"
+            >
+              LoveAdmin
+            </a>
           </div>
           <div className="flex space-x-5">
             {navigation.social.map((item) => (
