@@ -244,7 +244,7 @@ const Calendar: React.FC<CalendarProps> = ({ singleProduct }) => {
           )}
         </div>
         {/* desktop events */}
-        <div className="hidden w-full gap-1.5 xl:gap-2.5 -mt-3 lg:col-span-4 xl:col-span-5 lg:flex">
+        <div className="hidden w-full gap-1.5 xl:gap-2.5 -mt-3 lg:col-span-4 xl:col-span-5 lg:flex mb-10">
           {daysOfWeek.map((day) => (
             <div key={day} className="max-w-[25%] w-full min-w-0">
               <div className="sticky z-10 hidden pt-2.5 pb-2 text-center mb-1 lg:block top-14 bg-white/95 heading-sm ring-2 ring-white/95">
