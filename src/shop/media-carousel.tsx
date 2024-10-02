@@ -38,7 +38,7 @@ const MediaCarousel = ({
   };
 
   return (
-    <div className="self-start overflow-hidden lg:sticky lg:top-5">
+    <div className="self-start overflow-hidden lg:sticky lg:top-28">
       <div>
         <div className="overflow-hidden rounded-md">
           {media && (
