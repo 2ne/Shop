@@ -246,6 +246,29 @@ export const Checkout: React.FC = () => {
         </aside>
         <section className="lg:px-5 lg:col-span-2 lg:text-center">
           <div className="lg:max-w-[22rem] lg:m-auto">
+            {currentStep > 0 && (
+              <div className="max-lg:flex items-center justify-between -mt-1.5 hidden h-6 mb-2">
+                <button
+                  type="button"
+                  className="flex items-center -ml-2 text-sm"
+                  onClick={handlePrev}
+                >
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.25"
+                      d="M13.25 8.75L9.75 12l3.5 3.25"
+                    ></path>
+                  </svg>
+                  <div className="-ml-0.5">Back</div>
+                </button>
+                <div className="!text-sm lg:hidden sub-heading">
+                  Step {currentStep + 1} of {activeSteps.length}
+                </div>
+              </div>
+            )}
             {activeSteps.map((stepIndex, index) => (
               <div
                 key={index}
@@ -257,6 +280,7 @@ export const Checkout: React.FC = () => {
                 {renderStepComponent(stepIndex)}
               </div>
             ))}
+
             <div className="hidden pt-2 mt-4 lg:block lg:mt-6">
               <FormButton
                 onClick={submitCurrentForm}
