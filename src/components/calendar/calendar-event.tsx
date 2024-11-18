@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Event } from "../../org";
 import { useBasketContext } from "../basket/basket-context";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 interface CalendarEventProps {
@@ -93,7 +93,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
       image: event.img,
       title: event.title,
       subTitle: `Every ${activeDay} at ${event.startTime} - ${event.endTime}`,
-      dates: `${activeDay} 2024`,
+      dates: "4th April - 25th April",
       price: event.price,
       priceQuantity: "session",
       cost: event.price,
@@ -370,17 +370,19 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
             )}
           </div>
         </Link>
-        <Button
-          size="small"
-          icon={<PlusOutlined />}
-          className={`absolute top-1 right-1 z-10 shadow-md hover:scale-110 transition-all pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100
+        <Tooltip title="Add to basket">
+          <Button
+            size="small"
+            icon={<PlusOutlined />}
+            className={`absolute top-1 right-1 z-10 shadow-md hover:scale-110 transition-all pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100
           ${basketIsClicked ? "!bg-success border-success text-white" : ""}`}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            addToBasketAndOpen();
-          }}
-        />
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToBasketAndOpen();
+            }}
+          />
+        </Tooltip>
       </div>
     </>
   );
