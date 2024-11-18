@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Event } from "../../org";
+import { useBasketContext } from "../basket/basket-context";
+import { Button } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 interface CalendarEventProps {
   key: string;
@@ -68,6 +71,53 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   event,
   singleProduct,
 }) => {
+  const [basketIsClicked, setBasketIsClicked] = useState(false);
+  const { openBasket, isOpen, addItem } = useBasketContext();
+
+  useEffect(() => {
+    if (!isOpen) {
+      setBasketIsClicked(false);
+    }
+  }, [isOpen]);
+
+  const handleBasketClick = () => {
+    setBasketIsClicked(true);
+    setTimeout(() => {
+      setBasketIsClicked(false);
+    }, 4000);
+  };
+
+  const addToBasketAndOpen = () => {
+    const basketItem = {
+      id: Math.random().toString(36).substring(2, 15),
+      image: event.img,
+      title: event.title,
+      subTitle: `Every ${activeDay} at ${event.startTime} - ${event.endTime}`,
+      dates: `${activeDay} 2024`,
+      price: event.price,
+      priceQuantity: "session",
+      cost: event.price,
+      billing: "Monthly on the 1st",
+      link: event.link,
+      address: event.address,
+      description: event.description,
+      requiredProduct: {
+        id: Math.random().toString(36).substring(2, 15),
+        image: "finder-4.jpg",
+        dates: "April 2023 - April 2024",
+        title: "Swimming Membership",
+        subTitle: "12 months",
+        cost: "£20.00",
+        billing: "Monthly on the 1st",
+        link: "#",
+      },
+    };
+
+    handleBasketClick();
+    addItem(basketItem);
+    openBasket();
+  };
+
   const colourClass = singleProduct
     ? event.colour
       ? colourClasses[event.colour]
@@ -190,187 +240,148 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
   return (
     <>
       {getTimePeriod(event.startTime)}
-      <Link
-        key={`${activeDay}-event-${index}`}
-        to={event.link}
-        className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
-      >
-        {!event.hideImage && singleProduct && (
-          <img
-            className={`mt-0.5 max-lg:mb-0.5 aspect-[3/2] object-contain object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
-              event.colour ? " mix-blend-multiply " : " "
-            }`}
-            src={event.img}
-          />
-        )}
-        <div
-          className={`py-1 px-2 space-y-0.5 @[130px]:space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
+      <div className="relative group">
+        <Link
+          key={`${activeDay}-event-${index}`}
+          to={event.link}
+          className={`@container block px-0.5 text-sm card max-lg:grid gap-1 sm:gap-4 max-sm:grid-cols-3 max-lg:grid-cols-3 max-lg:items-center ${colourClass}`}
         >
-          <div className={!singleProduct ? "" : "mb-1.5"}>
-            <div className={`heading-sm line-clamp-2 ${textColourClass}`}>
-              {event.title}
-            </div>
-            <div
-              className={`truncate text-sm opacity-80 ${
-                singleProduct ? "" : "lg:hidden"
-              } ${textColourClass}`}
-            >
-              {singleProduct ? event.description : event.productGroup}
-            </div>
-          </div>
-          <div className="flex items-center gap-1">
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="7.25"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              ></circle>
-              <path
-                stroke="currentColor"
-                strokeWidth="1.5"
-                d="M12 8V12L14 14"
-              ></path>
-            </svg>
-            <span className="">{event.startTime}</span>
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-5 h-5 -mx-1.5 opacity-70 shrink-0"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-                d="M10.75 8.75L14.25 12L10.75 15.25"
-              ></path>
-            </svg>
-            <span className="truncate">{event.endTime}</span>
-          </div>
-          {singleProduct && (
-            <>
-              <div className="flex items-center gap-1">
-                <svg
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                    d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
-                  ></path>
-                  <circle
-                    cx="12"
-                    cy="11"
-                    r="2.25"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  ></circle>
-                </svg>
-                <span className="truncate">{event.address}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <svg
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="7.25"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  ></circle>
-                  <g transform="scale(0.45) translate(14 14)">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2.25"
-                      d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
-                    ></path>
-                  </g>
-                </svg>
-                {/* <svg
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="7.25"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  ></circle>
-                  <g transform="scale(0.45) translate(14 14)">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2.25"
-                      d="M17.25 6.75H9.375a2.625 2.625 0 100 5.25h5.25a2.625 2.625 0 010 5.25H6.75M11.75 19.25V4.75"
-                    ></path>
-                  </g>
-                </svg>
-                <svg
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="7.25"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  ></circle>
-                  <g transform="scale(0.47) translate(12 13)">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2.4"
-                      d="M17.25 4.75H16a7.25 7.25 0 100 14.5h1.25M6.75 9.75h5.5M6.75 14.25h5.5"
-                    ></path>
-                  </g>
-                </svg> */}
-                <span>{event.price}</span>
-              </div>
-            </>
+          {!event.hideImage && singleProduct && (
+            <img
+              className={`mt-0.5 max-lg:mb-0.5 aspect-[3/2] object-contain object-center mx-auto max-lg:col-span-1 max-lg:rounded-l-[calc(0.375rem-0.125rem)] lg:rounded-t-[calc(0.375rem-0.125rem)] ${
+                event.colour ? " mix-blend-multiply " : " "
+              }`}
+              src={event.img}
+            />
           )}
-        </div>
-      </Link>
+          <div
+            className={`py-1 px-2 space-y-0.5 @[130px]:space-y-1 my-1 lg:mt-0 lg:mb-px max-lg:col-span-2 ${textColourClass}`}
+          >
+            <div className={!singleProduct ? "" : "mb-1.5"}>
+              <div className={`heading-sm line-clamp-2 ${textColourClass}`}>
+                {event.title}
+              </div>
+              <div
+                className={`truncate text-sm opacity-80 ${
+                  singleProduct ? "" : "lg:hidden"
+                } ${textColourClass}`}
+              >
+                {singleProduct ? event.description : event.productGroup}
+              </div>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="7.25"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                ></circle>
+                <path
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  d="M12 8V12L14 14"
+                ></path>
+              </svg>
+              <span className="">{event.startTime}</span>
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="w-5 h-5 -mx-1.5 opacity-70 shrink-0"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1"
+                  d="M10.75 8.75L14.25 12L10.75 15.25"
+                ></path>
+              </svg>
+              <span className="truncate">{event.endTime}</span>
+            </div>
+            {singleProduct && (
+              <>
+                <div className="flex items-center gap-1">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M18.25 11C18.25 15 12 19.25 12 19.25C12 19.25 5.75 15 5.75 11C5.75 7.5 8.68629 4.75 12 4.75C15.3137 4.75 18.25 7.5 18.25 11Z"
+                    ></path>
+                    <circle
+                      cx="12"
+                      cy="11"
+                      r="2.25"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    ></circle>
+                  </svg>
+                  <span className="truncate">{event.address}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 -ml-1 opacity-70 shrink-0 hidden @[130px]:block"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="7.25"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    ></circle>
+                    <g transform="scale(0.45) translate(14 14)">
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.25"
+                        d="M17.25 8.25v-1.5a2 2 0 00-2-2h-3.5c-1.105 0-2 .893-2 1.998V14c0 3-3 5.25-3 5.25h8.5a2 2 0 002-2v-.5M6.75 11.75h6.5"
+                      ></path>
+                    </g>
+                  </svg>
+                  <span>{event.price}</span>
+                </div>
+              </>
+            )}
+          </div>
+        </Link>
+        <Button
+          size="small"
+          icon={<PlusOutlined />}
+          className={`absolute top-1 right-1 z-10 shadow-md hover:scale-110 transition-all pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100
+          ${basketIsClicked ? "!bg-success border-success text-white" : ""}`}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToBasketAndOpen();
+          }}
+        />
+      </div>
     </>
   );
 };
