@@ -374,7 +374,7 @@ const CalendarEvent: React.FC<CalendarEventProps> = ({
           <Button
             size="small"
             icon={<PlusOutlined />}
-            className={`absolute top-1 right-1 z-10 shadow-md hover:scale-110 transition-all pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100
+            className={`absolute top-1 right-1 z-10 shadow-md hover:scale-110 transition-all hover-hover:pointer-events-none hover-hover:opacity-0 group-hover:pointer-events-auto group-hover:opacity-100
           ${basketIsClicked ? "!bg-success border-success text-white" : ""}`}
             onClick={(e) => {
               e.preventDefault();
