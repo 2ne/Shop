@@ -191,7 +191,7 @@ const CheckoutAdditionalForms = forwardRef<
           <div
             className="prose"
             dangerouslySetInnerHTML={{
-              __html: `<p><img style="display: block; margin-left: auto; margin-right: auto;" title="Tiny Logo" src="../../../images/logos/android-chrome-256x256.png" alt="TinyMCE Logo" width="128" height="128"></p>
+              __html: `
 <h2 style="text-align: center;">Welcome to the TinyMCE Cloud demo!</h2>
 <h5 style="text-align: center;">This demo includes <em>enterprise</em>, also known as <em>Premium</em> features.</h5>
 <h5 style="text-align: center;">Try out these features as provided in this full featured example.</h5>
