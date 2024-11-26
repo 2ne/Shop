@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose {
+  @apply !font-sans !text-sm;
+}
+
+.prose p {
+  @apply text-current !text-sm;
+}
+
 .min-h-screen {
   @apply min-h-[100svh];
 }
