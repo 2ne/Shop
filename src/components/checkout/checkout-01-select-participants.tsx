@@ -291,8 +291,24 @@ const CheckoutSelectParticipants = forwardRef<
               </Form.Item>
               <div>
                 <Button
-                  type="link"
-                  className="!p-0 h-auto"
+                  block
+                  icon={
+                    <svg
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      className="w-5 h-5 -mr-0.5"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M12 5.75v12.5M18.25 12H5.75"
+                      ></path>
+                    </svg>
+                  }
                   onClick={() => {
                     setIsAddParticipantModalOpen(true);
                   }}
