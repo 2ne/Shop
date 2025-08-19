@@ -2,15 +2,22 @@ import { ReactElement, useEffect, useState } from "react";
 import Breadcrumb from "../components/breadcrumb";
 import Header from "../components/header";
 import Main from "../components/main";
-import { Button, Radio } from "antd";
+import { Button, Radio, Drawer } from "antd";
 import { useBasketContext } from "../components/basket/basket-context";
 import { BasketItem } from "../types/types";
-import { WarningFilled } from "@ant-design/icons";
+import { WarningFilled, CalendarOutlined } from "@ant-design/icons";
 import MediaCarousel from "./media-carousel";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 function BubbleTheSeahorse(): ReactElement {
   const [noSpaces, setNoSpaces] = useState(false);
   const [basketIsClicked, setBasketIsClicked] = useState(false);
+  const [selectedPurchaseOption, setSelectedPurchaseOption] = useState("a");
+  const [selectedDate, setSelectedDate] = useState("date-1");
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+  const drawerPlacement = isMobile ? "bottom" : "right";
 
   const breadcrumbItems = [
     { label: "Adult and Child Lessons", link: "/AdultChildLessons" },
@@ -79,6 +86,82 @@ function BubbleTheSeahorse(): ReactElement {
 
   const basketButtonText = basketIsClicked ? "Added" : "Add to basket";
 
+  // All dates mapping
+  const allDates: Record<string, string> = {
+    "date-1": "4th April",
+    "date-2": "11th April",
+    "date-3": "18th April",
+    "date-4": "25th April",
+    "date-5": "2nd May",
+    "date-6": "9th May",
+    "date-7": "16th May",
+    "date-8": "23rd May",
+    "date-9": "30th May",
+    "date-10": "4th June",
+    "date-11": "11th June",
+    "date-12": "18th Jun",
+    "date-13": "25th Jun",
+    "date-14": "2nd Jul",
+    "date-15": "9th Jul",
+    "date-16": "16th Jul",
+    "date-17": "23rd Jul",
+    "date-18": "30th Jul",
+    "date-19": "6th Aug",
+    "date-20": "13th Aug",
+    "date-21": "20th Aug",
+    "date-22": "27th Aug",
+    "date-23": "3rd Sep",
+    "date-24": "10th Sep",
+    "date-25": "17th Sep",
+    "date-26": "24th Sep",
+    "date-27": "1st Oct",
+    "date-28": "8th Oct",
+    "date-29": "15th Oct",
+    "date-30": "22nd Oct",
+    "date-31": "29th Oct",
+  };
+
+  // Helper function to check if date is from main grid
+  const isMainGridDate = (dateValue: string): boolean => {
+    return [
+      "date-1",
+      "date-2",
+      "date-3",
+      "date-4",
+      "date-5",
+      "date-6",
+      "date-7",
+      "date-8",
+      "date-9",
+      "date-10",
+      "date-11",
+    ].includes(dateValue);
+  };
+
+  // Additional dates for the drawer
+  const additionalDates = [
+    { value: "date-12", label: "18th Jun" },
+    { value: "date-13", label: "25th Jun" },
+    { value: "date-14", label: "2nd Jul" },
+    { value: "date-15", label: "9th Jul" },
+    { value: "date-16", label: "16th Jul" },
+    { value: "date-17", label: "23rd Jul" },
+    { value: "date-18", label: "30th Jul" },
+    { value: "date-19", label: "6th Aug" },
+    { value: "date-20", label: "13th Aug" },
+    { value: "date-21", label: "20th Aug" },
+    { value: "date-22", label: "27th Aug" },
+    { value: "date-23", label: "3rd Sep" },
+    { value: "date-24", label: "10th Sep" },
+    { value: "date-25", label: "17th Sep" },
+    { value: "date-26", label: "24th Sep" },
+    { value: "date-27", label: "1st Oct" },
+    { value: "date-28", label: "8th Oct" },
+    { value: "date-29", label: "15th Oct" },
+    { value: "date-30", label: "22nd Oct" },
+    { value: "date-31", label: "29th Oct" },
+  ];
+
   return (
     <>
       <Header />
@@ -97,28 +180,60 @@ function BubbleTheSeahorse(): ReactElement {
                 <Radio.Group
                   defaultValue="a"
                   size="large"
-                  className="flex w-full gap-2 px-px sm:gap-4"
+                  className="flex gap-2 px-px w-full sm:gap-4"
+                  onChange={(e) => setSelectedPurchaseOption(e.target.value)}
                 >
-                  <Radio.Button value="a" className="radio-button-xl">
+                  <Radio.Button
+                    value="a"
+                    className="radio-button-xl min-h-[64px] sm:min-h-[88px]"
+                  >
                     <div className="heading">
                       Session<span className="mx-px"> · </span>£16.00
                     </div>
-                    <div className="mt-0.5 sub-heading-xs">
-                      Every Tuesday
-                      <span className="hidden lg:inline">
-                        {" "}
-                        at 11:30 - 12:00
-                      </span>
-                    </div>
+                    <AnimatePresence mode="wait">
+                      {selectedPurchaseOption === "a" && (
+                        <motion.div
+                          key="option-a"
+                          initial={{ opacity: 0, y: 10, height: 0 }}
+                          animate={{ opacity: 1, y: 0, height: "auto" }}
+                          exit={{ opacity: 0, y: 10, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-0.5 sub-heading-xs overflow-hidden"
+                        >
+                          Every Tuesday
+                          <span className="hidden lg:inline">
+                            {" "}
+                            at 11:30 - 12:00
+                          </span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </Radio.Button>
-                  <Radio.Button value="b" className="radio-button-xl">
+                  <Radio.Button
+                    value="b"
+                    className="radio-button-xl min-h-[64px] sm:min-h-[88px]"
+                  >
                     <div className="heading">
                       Trial<span className="mx-px"> · </span>£5.00
                     </div>
-                    <div className="mt-0.5 sub-heading-xs">
-                      Single session
-                      <span className="hidden lg:inline"> on a Tuesday</span>
-                    </div>
+                    <AnimatePresence mode="wait">
+                      {selectedPurchaseOption === "b" && (
+                        <motion.div
+                          key="option-b"
+                          initial={{ opacity: 0, y: 10, height: 0 }}
+                          animate={{ opacity: 1, y: 0, height: "auto" }}
+                          exit={{ opacity: 0, y: 10, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-0.5 sub-heading-xs overflow-hidden"
+                        >
+                          Single session
+                          <span className="hidden lg:inline">
+                            {" "}
+                            on a Tuesday
+                          </span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </Radio.Button>
                 </Radio.Group>
               </div>
@@ -128,9 +243,10 @@ function BubbleTheSeahorse(): ReactElement {
               <div>
                 <Radio.Group
                   size="large"
-                  defaultValue="date-1"
-                  className="grid w-full grid-cols-3 gap-2 px-px sm:gap-4 sm:grid-cols-4"
+                  value={selectedDate}
+                  className="grid grid-cols-3 gap-2 px-px w-full sm:gap-4 sm:grid-cols-4"
                   onChange={(e) => {
+                    setSelectedDate(e.target.value);
                     if (
                       e.target.value === "date-5" ||
                       e.target.value === "date-6"
@@ -180,9 +296,27 @@ function BubbleTheSeahorse(): ReactElement {
                   <Radio.Button value="date-11" className="radio-button-lg">
                     11th June
                   </Radio.Button>
-                  <Button className="radio-button-lg">
-                    More <div className="hidden ml-1 md:inline">dates</div>...
-                  </Button>
+                  {selectedDate &&
+                  allDates[selectedDate] &&
+                  !isMainGridDate(selectedDate) ? (
+                    <Radio.Button
+                      value={selectedDate}
+                      className="radio-button-lg"
+                      onClick={() => setDrawerVisible(true)}
+                    >
+                      <div className="flex gap-1.5 justify-center items-center">
+                        <CalendarOutlined />
+                        {allDates[selectedDate]}
+                      </div>
+                    </Radio.Button>
+                  ) : (
+                    <Button
+                      className="radio-button-lg"
+                      onClick={() => setDrawerVisible(true)}
+                    >
+                      More <div className="hidden ml-1 md:inline">dates</div>...
+                    </Button>
+                  )}
                 </Radio.Group>
               </div>
             </section>
@@ -208,7 +342,7 @@ function BubbleTheSeahorse(): ReactElement {
                   )}
                 </div>
               </div>
-              <div className="justify-center hidden lg:flex">
+              <div className="hidden justify-center lg:flex">
                 <div className="px-4 py-1.5 text-sm text-neutral-800 rounded-full bg-neutral-100">
                   Estimated monthly total{" "}
                   <span className="heading-sm">£64.00</span>
@@ -299,6 +433,33 @@ function BubbleTheSeahorse(): ReactElement {
           </div>
         </div>
       </Main>
+
+      {/* Date Selection Drawer */}
+      <Drawer
+        title="Select a date"
+        placement={drawerPlacement}
+        open={drawerVisible}
+        onClose={() => setDrawerVisible(false)}
+        rootClassName="ant-drawer-bottom-custom"
+      >
+        <div className="space-y-6">
+          <div className="grid grid-cols-3 gap-2">
+            {additionalDates.map((date) => (
+              <Radio.Button
+                key={date.value}
+                value={date.value}
+                className="radio-button-lg"
+                onClick={() => {
+                  setSelectedDate(date.value);
+                  setDrawerVisible(false);
+                }}
+              >
+                {date.label}
+              </Radio.Button>
+            ))}
+          </div>
+        </div>
+      </Drawer>
     </>
   );
 }

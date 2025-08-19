@@ -11,10 +11,12 @@ import {
   WarningFilled,
   WarningOutlined,
 } from "@ant-design/icons";
+import { AnimatePresence, motion } from "framer-motion";
 
 function SwmmingMembership(): ReactElement {
   const [showMessage, setShowMessage] = useState(false);
   const [basketIsClicked, setBasketIsClicked] = useState(false);
+  const [selectedPaymentOption, setSelectedPaymentOption] = useState("a");
 
   const breadcrumbItems = [
     { label: "Memberships", link: "/Memberships" },
@@ -193,22 +195,51 @@ function SwmmingMembership(): ReactElement {
                 defaultValue="a"
                 size="large"
                 className="flex w-full gap-2 px-px sm:gap-4"
+                onChange={(e) => setSelectedPaymentOption(e.target.value)}
               >
-                <Radio.Button value="a" className="radio-button-xl">
+                <Radio.Button
+                  value="a"
+                  className="radio-button-xl min-h-[64px] sm:min-h-[88px]"
+                >
                   <div className="heading">
                     Single payment<span className="mx-px"> · </span>£120.00
                   </div>
-                  <div className="mt-0.5 sub-heading-xs">
-                    Pay the full amount today
-                  </div>
+                  <AnimatePresence mode="wait">
+                    {selectedPaymentOption === "a" && (
+                      <motion.div
+                        key="payment-option-a"
+                        initial={{ opacity: 0, y: 10, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: 10, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-0.5 sub-heading-xs overflow-hidden"
+                      >
+                        Pay the full amount today
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </Radio.Button>
-                <Radio.Button value="b" className="radio-button-xl">
+                <Radio.Button
+                  value="b"
+                  className="radio-button-xl min-h-[64px] sm:min-h-[88px]"
+                >
                   <div className="heading">
                     Monthly payments<span className="mx-px"> · </span>£13.00
                   </div>
-                  <div className="mt-0.5 sub-heading-xs">
-                    £133.00 over 12 months{" "}
-                  </div>
+                  <AnimatePresence mode="wait">
+                    {selectedPaymentOption === "b" && (
+                      <motion.div
+                        key="payment-option-b"
+                        initial={{ opacity: 0, y: 10, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: 10, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-0.5 sub-heading-xs overflow-hidden"
+                      >
+                        £133.00 over 12 months{" "}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </Radio.Button>
               </Radio.Group>
             </section>
