@@ -495,9 +495,9 @@ const CheckoutDonation = forwardRef<
                             </motion.div>
                           )}
 
-                          <div className="relative text-2xl text-center">
+                          <div className="relative text-center">
                             <div
-                              className={`text-2xl font-bold ${
+                              className={`text-2xl relative top-0.5 font-bold ${
                                 isSelected
                                   ? "text-[#005da2]"
                                   : "text-neutral-900"
@@ -514,12 +514,12 @@ const CheckoutDonation = forwardRef<
                                 }`}
                               >
                                 <div>
-                                  {amount === 50 && "Generous"}
-                                  {amount === 100 && "Very Generous"}
-                                  {amount === 200 && "Incredibly Generous"}
+                                  {amount === 50 && "Heart Warming"}
+                                  {amount === 100 && "Truly Amazing"}
+                                  {amount === 200 && "Absolutely Incredible"}
                                 </div>
                                 <motion.div
-                                  className="text-base mt-0.5"
+                                  className="mt-1 text-base"
                                   animate={
                                     isSelected
                                       ? {
@@ -535,9 +535,9 @@ const CheckoutDonation = forwardRef<
                                     ease: "easeInOut",
                                   }}
                                 >
-                                  {amount === 50 && "😊"}
-                                  {amount === 100 && "😄"}
-                                  {amount === 200 && "🤩"}
+                                  {amount === 50 && "❤️"}
+                                  {amount === 100 && "🚀"}
+                                  {amount === 200 && "💎"}
                                 </motion.div>
                               </div>
                             )}
