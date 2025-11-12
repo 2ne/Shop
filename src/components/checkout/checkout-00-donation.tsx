@@ -42,6 +42,7 @@ const CheckoutDonation = forwardRef<
     const [selectedSmartPreset, setSelectedSmartPreset] = useState<
       number | null
     >(null);
+    const [showFixedAmountInput, setShowFixedAmountInput] = useState(false);
 
     // Helper function to parse price string to number
     const parsePrice = (priceString?: string): number => {
@@ -99,6 +100,7 @@ const CheckoutDonation = forwardRef<
         setSelectedPreset(null);
         setSelectedSmartPreset(null);
         setDonationType("percentage");
+        setShowFixedAmountInput(false);
       } else if (designVariant === "2") {
         // Variant 2: Reset preset buttons - default to £10
         setSelectedPreset(10);
@@ -275,14 +277,19 @@ const CheckoutDonation = forwardRef<
                 <>
                   {/* Percentage Slider Option */}
                   <div className="pb-6 space-y-3">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center tabular-nums">
                       <label className="text-sm font-medium text-neutral-900">
-                        Donate a percentage
+                        Percentage
                       </label>
-                      <span className="text-sm font-medium text-neutral-700">
+                      <span className="text-sm font-medium text-subtitle">
                         {donationType === "fixed"
                           ? `${lastPercentage}%`
                           : `${percentage}%`}
+                        {donationType === "percentage" && percentage > 0 && (
+                          <span className="text-sm text-neutral-900 ml-1.5">
+                            · £{((basketTotal * percentage) / 100).toFixed(2)}
+                          </span>
+                        )}
                       </span>
                     </div>
                     <Slider
@@ -309,18 +316,30 @@ const CheckoutDonation = forwardRef<
 
                   {/* Fixed Amount Option */}
                   <div className="pt-3 border-t border-neutral-200">
-                    <label className="block mb-2 text-sm font-medium text-neutral-900">
-                      Or enter a fixed amount
-                    </label>
-                    <Input
-                      prefix="£"
-                      placeholder="0.00"
-                      value={fixedAmount}
-                      onChange={handleFixedAmountChange}
-                      className="w-full"
-                      type="text"
-                      inputMode="decimal"
-                    />
+                    {!showFixedAmountInput ? (
+                      <button
+                        type="button"
+                        onClick={() => setShowFixedAmountInput(true)}
+                        className="text-sm text-center w-full font-medium text-[#005da2] hover:text-[#005da2]/80 hover:underline transition-colors"
+                      >
+                        Enter custom amount
+                      </button>
+                    ) : (
+                      <div>
+                        <label className="block mb-2 text-sm font-medium text-neutral-900">
+                          Enter custom amount
+                        </label>
+                        <Input
+                          prefix="£"
+                          placeholder="0.00"
+                          value={fixedAmount}
+                          onChange={handleFixedAmountChange}
+                          className="w-full"
+                          type="text"
+                          inputMode="decimal"
+                        />
+                      </div>
+                    )}
                   </div>
                 </>
               )}
@@ -604,19 +623,21 @@ const CheckoutDonation = forwardRef<
               )}
             </div>
 
-            {/* Summary - Only visible for design variant 1 (other variants show donation in their own UI) */}
-            {donationAmount > 0 && designVariant === "1" && (
-              <div className="pt-3 border-t border-neutral-200">
-                <div className="flex justify-between items-center text-sm">
-                  <label className="text-sm font-medium text-neutral-900">
-                    Donation
-                  </label>
-                  <span className="text-neutral-900">
-                    +£{donationAmount.toFixed(2)}
-                  </span>
+            {/* Summary - Only visible for design variant 1 when fixed amount is used (percentage shows inline) */}
+            {donationAmount > 0 &&
+              designVariant === "1" &&
+              donationType === "fixed" && (
+                <div className="pt-3 border-t border-neutral-200">
+                  <div className="flex justify-between items-center text-sm">
+                    <label className="text-sm font-medium text-neutral-900">
+                      Donation
+                    </label>
+                    <span className="text-neutral-900">
+                      +£{donationAmount.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       </>
