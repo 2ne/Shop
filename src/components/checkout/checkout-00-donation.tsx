@@ -361,7 +361,7 @@ const CheckoutDonation = forwardRef<
               {/* Variant 3: Smart Presets (Percentage-based buttons) */}
               {designVariant === "3" && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-4 gap-2">
                     {smartPresetPercentages.map((percent) => {
                       const amount = (basketTotal * percent) / 100;
                       return (
@@ -374,10 +374,10 @@ const CheckoutDonation = forwardRef<
                               : "border-neutral-200 hover:border-[#005da2]/50 hover:bg-[#e4f7fb]/50 text-body"
                           }`}
                         >
-                          <div className="text-sm font-medium">
+                          <div className="text-base font-medium">
                             £{amount.toFixed(2)}
                           </div>
-                          <div className="text-xs text-neutral-500 mt-0.5">
+                          <div className="text-sm text-neutral-500 mt-0.5">
                             {percent}%
                           </div>
                         </button>
