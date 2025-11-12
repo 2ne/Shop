@@ -1,4 +1,4 @@
-export const orgName = "Swim UK";
+export const orgName = "CG Swim School";
 export const orgLogo = "logo.png";
 
 export const orgColours = {

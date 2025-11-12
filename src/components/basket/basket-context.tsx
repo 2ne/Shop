@@ -28,6 +28,8 @@ interface BasketContextValue {
     additionalForm: AdditionalForm
   ) => void;
   addUploadedFile: (participantId: number, uploadedFile: UploadedFile) => void;
+  donationAmount: number;
+  setDonationAmount: (amount: number) => void;
 }
 
 const BasketContext = createContext<BasketContextValue | null>(null);
@@ -43,6 +45,7 @@ export const useBasketContext = () => {
 export const BasketProvider: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState<BasketItem[]>([]);
+  const [donationAmount, setDonationAmount] = useState<number>(0);
 
   const openBasket = () => {
     setIsOpen(true);
@@ -245,6 +248,8 @@ export const BasketProvider: React.FC = ({ children }) => {
         addConsentForm,
         addAdditionalForm,
         addUploadedFile,
+        donationAmount,
+        setDonationAmount,
       }}
     >
       {children}

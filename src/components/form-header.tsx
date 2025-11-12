@@ -6,6 +6,7 @@ type FormHeaderProps = {
   title: string;
   subtitle: string;
   requiredText?: string;
+  iconClassName?: string;
 };
 
 const FormHeader: React.FC<FormHeaderProps> = ({
@@ -13,12 +14,17 @@ const FormHeader: React.FC<FormHeaderProps> = ({
   title,
   subtitle,
   requiredText,
+  iconClassName,
 }) => {
   return (
     <header>
       {icon && (
         <div className="justify-center hidden mb-2.5 lg:flex">
-          <i className="w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-neutral-100/75 flex items-center justify-center text-neutral-700">
+          <i
+            className={`w-[3.25rem] h-[3.25rem] p-[calc(0.5rem+1px)] rounded-full bg-neutral-100/75 flex items-center justify-center text-neutral-700 ${
+              iconClassName ?? ""
+            }`}
+          >
             {icon}
           </i>
         </div>
@@ -35,7 +41,7 @@ const FormHeader: React.FC<FormHeaderProps> = ({
       </div>
       {requiredText && (
         <div className="flex mt-2.5 lg:justify-center">
-          <div className="inline-flex items-center px-3 py-2 text-xs font-medium text-left rounded-md lg:px-4 sm:text-sm bg-primary text-primary_text gap-x-2">
+          <div className="inline-flex gap-x-2 items-center px-3 py-2 text-xs font-medium text-left rounded-md lg:px-4 sm:text-sm bg-primary text-primary_text">
             <svg
               width="24"
               height="24"

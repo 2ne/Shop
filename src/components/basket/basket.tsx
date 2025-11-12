@@ -5,14 +5,41 @@ import { useBasketContext } from "./basket-context";
 import { useCheckoutContext } from "../checkout/checkout-context";
 import { AnimatePresence, motion } from "framer-motion";
 
-export const BasketTotals: React.FC = () => (
-  <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
-    <div className="text-neutral-500">Monthly cost</div>
-    <div className="text-neutral-500">£48.00</div>
-    <div className="font-medium">Total due now</div>
-    <div className="font-medium">£48.00</div>
-  </div>
-);
+export const BasketTotals: React.FC = () => {
+  const { donationAmount, basketItems } = useBasketContext();
+  
+  // Helper function to parse price string to number
+  const parsePrice = (priceString?: string): number => {
+    if (!priceString) return 0;
+    // Remove £ and any whitespace, then parse to float
+    const cleaned = priceString.replace(/£/g, "").replace(/\s/g, "");
+    return parseFloat(cleaned) || 0;
+  };
+
+  // Calculate basket total from actual basket items
+  const basketTotal = basketItems.reduce((total, item) => {
+    // Use cost if available (monthly cost), otherwise use price
+    const itemPrice = parsePrice(item.cost || item.price);
+    return total + itemPrice;
+  }, 0);
+  
+  const totalWithDonation = basketTotal + donationAmount;
+
+  return (
+    <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
+      <div className="text-neutral-500">Monthly cost</div>
+      <div className="text-neutral-500">£{basketTotal.toFixed(2)}</div>
+      {donationAmount > 0 && (
+        <>
+          <div className="text-neutral-500">Donation</div>
+          <div className="text-neutral-500">£{donationAmount.toFixed(2)}</div>
+        </>
+      )}
+      <div className="font-medium">Total due now</div>
+      <div className="font-medium">£{totalWithDonation.toFixed(2)}</div>
+    </div>
+  );
+};
 
 const Basket: React.FC = () => {
   const [itemError, setItemError] = useState(false);

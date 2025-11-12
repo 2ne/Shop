@@ -1,6 +1,9 @@
 import { Button } from "antd";
 import { useEffect, useRef, useState, SetStateAction } from "react";
 import Basket, { BasketTotals } from "../components/basket/basket";
+import CheckoutDonation, {
+  CheckoutDonationHandles,
+} from "../components/checkout/checkout-00-donation";
 import CheckoutSelectParticipants, {
   CheckoutSelectParticipantsHandles,
 } from "../components/checkout/checkout-01-select-participants";
@@ -33,6 +36,7 @@ import Wrapper from "../components/wrapper";
 import { useBasketContext } from "../components/basket/basket-context";
 import Steps from "../components/steps";
 export const Checkout: React.FC = () => {
+  const donationRef = useRef<CheckoutDonationHandles>(null);
   const selectParticipantsRef = useRef<CheckoutSelectParticipantsHandles>(null);
   const additionalProductsRef = useRef<CheckoutAdditionalProductsHandles>(null);
   const checkoutMedicalInfoRef = useRef<CheckoutMedicalInfoHandles>(null);
@@ -45,6 +49,13 @@ export const Checkout: React.FC = () => {
   const CheckoutPaymentRef = useRef<CheckoutPaymentHandles>(null);
 
   const stepsData = [
+    {
+      Component: CheckoutDonation,
+      ref: donationRef,
+      title: "Donation",
+      subtitle: "Support our club with an optional donation",
+      buttonType: "continue",
+    },
     {
       Component: CheckoutSelectParticipants,
       ref: selectParticipantsRef,
@@ -106,7 +117,7 @@ export const Checkout: React.FC = () => {
   ];
 
   const [activeSteps, setActiveSteps] = useState<number[]>([
-    0, 1, 2, 3, 4, 5, 6, 7,
+    0, 1, 2, 3, 4, 5, 6, 7, 8,
   ]); // Define which steps are required (stepData[index])
   const [currentStep, setCurrentStep] = useState(0);
   const [furthestStep, setFurthestStep] = useState(currentStep);
