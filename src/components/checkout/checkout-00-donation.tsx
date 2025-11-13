@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Input, InputRef, Slider } from "antd";
+import { Input, InputRef, Slider, Switch } from "antd";
 import { motion } from "framer-motion";
 import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
@@ -29,21 +29,22 @@ const CheckoutDonation = forwardRef<
     ref: React.Ref<CheckoutDonationHandles>
   ) => {
     const { basketItems, setDonationAmount } = useBasketContext();
-    const [designVariant, setDesignVariant] = useState<"1" | "2" | "3" | "4">(
-      "1"
-    );
-    const [percentage, setPercentage] = useState(10); // Default to 10%
-    const [lastPercentage, setLastPercentage] = useState(10); // Store last percentage value
+    const [designVariant, setDesignVariant] = useState<
+      "1" | "2" | "3" | "4" | "5"
+    >("1");
+    const [percentage, setPercentage] = useState(15); // Default to 15%
+    const [lastPercentage, setLastPercentage] = useState(15); // Store last percentage value
     const [donationType, setDonationType] = useState<"percentage" | "fixed">(
       "percentage"
     );
     const [fixedAmount, setFixedAmount] = useState<string>("");
-    const [dynamicMax, setDynamicMax] = useState<number>(20); // Dynamic max percentage
+    const [dynamicMax, setDynamicMax] = useState<number>(25); // Dynamic max percentage
     const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
     const [selectedSmartPreset, setSelectedSmartPreset] = useState<
       number | null
     >(null);
     const [showFixedAmountInput, setShowFixedAmountInput] = useState(false);
+    const [showDonationSummary, setShowDonationSummary] = useState(true); // Switch state - enabled by default
     const fixedAmountInputRef = useRef<InputRef>(null);
 
     // Helper function to parse price string to number
@@ -67,57 +68,79 @@ const CheckoutDonation = forwardRef<
 
     // Calculate donation amount based on donation type and design variant
     let donationAmount = 0;
-    if (designVariant === "2") {
-      // Variant 2: Preset buttons
+    if (designVariant === "1") {
+      // Variant 1: Slider + fixed with round up switch
+      if (donationType === "fixed") {
+        donationAmount = parseFloat(fixedAmount) || 0;
+      } else {
+        const calculatedAmount = (basketTotal * percentage) / 100;
+        // Round up to nearest pound if switch is enabled
+        donationAmount = showDonationSummary
+          ? Math.ceil(calculatedAmount)
+          : calculatedAmount;
+      }
+    } else if (designVariant === "2") {
+      // Variant 2: Slider + fixed without round up switch
+      if (donationType === "fixed") {
+        donationAmount = parseFloat(fixedAmount) || 0;
+      } else {
+        donationAmount = (basketTotal * percentage) / 100;
+      }
+    } else if (designVariant === "3") {
+      // Variant 3: Preset buttons
       if (selectedPreset !== null) {
         donationAmount = selectedPreset;
       } else if (fixedAmount) {
         donationAmount = parseFloat(fixedAmount) || 0;
       }
-    } else if (designVariant === "3") {
-      // Variant 3: Smart presets (percentage-based)
+    } else if (designVariant === "4") {
+      // Variant 4: Smart presets (percentage-based)
       if (selectedSmartPreset !== null) {
         donationAmount = (basketTotal * selectedSmartPreset) / 100;
       } else if (fixedAmount) {
         donationAmount = parseFloat(fixedAmount) || 0;
       }
-    } else if (designVariant === "4") {
-      // Variant 4: Experimental visual card selection
+    } else if (designVariant === "5") {
+      // Variant 5: Experimental visual card selection
       donationAmount = parseFloat(fixedAmount) || 0;
-    } else {
-      // Variant 1: Current (slider + fixed)
-      donationAmount =
-        donationType === "fixed"
-          ? parseFloat(fixedAmount) || 0
-          : (basketTotal * percentage) / 100;
     }
 
     // Reset defaults when switching design variants
     useEffect(() => {
       if (designVariant === "1") {
-        // Variant 1: Reset to 10% percentage
-        setPercentage(10);
-        setLastPercentage(10);
+        // Variant 1: Reset to 15% percentage
+        setPercentage(15);
+        setLastPercentage(15);
         setFixedAmount("");
         setSelectedPreset(null);
         setSelectedSmartPreset(null);
         setDonationType("percentage");
         setShowFixedAmountInput(false);
-        setDynamicMax(20); // Reset to default max
+        setDynamicMax(25); // Reset to default max
       } else if (designVariant === "2") {
-        // Variant 2: Reset preset buttons - default to £10
+        // Variant 2: Reset to 15% percentage (same as variant 1 but without round up switch)
+        setPercentage(15);
+        setLastPercentage(15);
+        setFixedAmount("");
+        setSelectedPreset(null);
+        setSelectedSmartPreset(null);
+        setDonationType("percentage");
+        setShowFixedAmountInput(false);
+        setDynamicMax(25); // Reset to default max
+      } else if (designVariant === "3") {
+        // Variant 3: Reset preset buttons - default to £10
         setSelectedPreset(10);
         setFixedAmount("");
         setPercentage(0);
         setSelectedSmartPreset(null);
-      } else if (designVariant === "3") {
-        // Variant 3: Reset smart presets - default to 10%
+      } else if (designVariant === "4") {
+        // Variant 4: Reset smart presets - default to 10%
         setSelectedSmartPreset(10);
         setFixedAmount("");
         setPercentage(0);
         setSelectedPreset(null);
-      } else if (designVariant === "4") {
-        // Variant 4: Reset experimental visual cards - default to £10
+      } else if (designVariant === "5") {
+        // Variant 5: Reset experimental visual cards - default to £10
         setFixedAmount("10");
         setPercentage(0);
         setSelectedPreset(null);
@@ -142,11 +165,13 @@ const CheckoutDonation = forwardRef<
       }
     }, [showFixedAmountInput]);
 
-    // Ensure lastPercentage doesn't exceed dynamicMax and updates when dynamicMax changes
+    // Ensure lastPercentage doesn't exceed dynamicMax, doesn't go below 5%, and updates when dynamicMax changes
     useEffect(() => {
       if (donationType === "fixed") {
         if (lastPercentage > dynamicMax) {
           setLastPercentage(dynamicMax);
+        } else if (lastPercentage < 5) {
+          setLastPercentage(5);
         } else if (fixedAmount) {
           // Recalculate lastPercentage when dynamicMax changes to ensure slider updates
           const numericValue = parseFloat(fixedAmount);
@@ -161,11 +186,13 @@ const CheckoutDonation = forwardRef<
               Math.max(calculatedPercentage, 0),
               MAX_PERCENTAGE
             );
-            setLastPercentage(Math.min(cappedPercentage, dynamicMax));
+            setLastPercentage(
+              Math.max(Math.min(cappedPercentage, dynamicMax), 5)
+            );
           }
         }
       }
-    }, [dynamicMax, donationType]);
+    }, [dynamicMax, donationType, fixedAmount, basketTotal, lastPercentage]);
 
     useImperativeHandle(ref, () => ({
       submitForm: async () => {
@@ -181,7 +208,7 @@ const CheckoutDonation = forwardRef<
       setLastPercentage(value);
       setDonationType("percentage");
       setFixedAmount("");
-      setDynamicMax(20); // Reset to default max when using percentage slider
+      setDynamicMax(25); // Reset to default max when using percentage slider
     };
 
     const handleFixedAmountChange = (
@@ -194,10 +221,11 @@ const CheckoutDonation = forwardRef<
         setSelectedPreset(null); // Clear preset when typing custom amount
         setSelectedSmartPreset(null); // Clear smart preset when typing custom amount
         if (value === "") {
-          // Switch back to percentage when fixed amount is cleared (for variant 1)
-          if (designVariant === "1") {
+          // Switch back to percentage when fixed amount is cleared (for variants 1 and 2)
+          if (designVariant === "1" || designVariant === "2") {
             setDonationType("percentage");
-            setDynamicMax(20); // Reset to default max
+            setDynamicMax(25); // Reset to default max
+            setShowFixedAmountInput(false); // Hide the custom amount input and show slider
           }
         } else {
           setDonationType("fixed");
@@ -217,8 +245,8 @@ const CheckoutDonation = forwardRef<
               MAX_PERCENTAGE
             );
 
-            // If percentage exceeds 20%, expand the max and round up to nearest 5%
-            if (cappedPercentage > 20) {
+            // If percentage exceeds 25%, expand the max and round up to nearest 5%
+            if (cappedPercentage > 25) {
               const roundedUpMax = Math.min(
                 Math.ceil(cappedPercentage / 5) * 5,
                 MAX_PERCENTAGE
@@ -227,19 +255,20 @@ const CheckoutDonation = forwardRef<
               // Ensure lastPercentage is set to the capped value, not exceeding dynamicMax
               setLastPercentage(Math.min(cappedPercentage, roundedUpMax));
             } else {
-              // Clamp to max 20% and round to nearest step (0, 5, 10, 15, 20)
-              setDynamicMax(20);
+              // Clamp to max 25% and round to nearest step (5, 10, 15, 20, 25)
+              // Minimum is 5%, so clamp lastPercentage to at least 5%
+              setDynamicMax(25);
               const roundedPercentage = Math.round(cappedPercentage / 5) * 5;
-              setLastPercentage(Math.min(roundedPercentage, 20));
+              setLastPercentage(Math.max(Math.min(roundedPercentage, 25), 5));
             }
           } else if (numericValue === 0) {
-            // Handle zero case
-            setDynamicMax(20);
-            setLastPercentage(0);
+            // Handle zero case - set to minimum 5%
+            setDynamicMax(25);
+            setLastPercentage(5);
           } else {
-            // Handle invalid or negative values
-            setDynamicMax(20);
-            setLastPercentage(0);
+            // Handle invalid or negative values - set to minimum 5%
+            setDynamicMax(25);
+            setLastPercentage(5);
           }
         }
       }
@@ -308,6 +337,16 @@ const CheckoutDonation = forwardRef<
             >
               4
             </button>
+            <button
+              onClick={() => setDesignVariant("5")}
+              className={`px-2 py-1 rounded ${
+                designVariant === "5"
+                  ? "bg-white text-black"
+                  : "hover:bg-neutral-800"
+              }`}
+            >
+              5
+            </button>
           </div>
         </div>
 
@@ -374,114 +413,139 @@ const CheckoutDonation = forwardRef<
               {/* Variant 1: JustGiving-style Slider */}
               {designVariant === "1" && (
                 <div>
-                  {/* Slider Section */}
-                  <div className="relative pt-10">
-                    {/* Custom Tooltip above slider */}
-                    {((donationType === "percentage" && percentage >= 0) ||
-                      (donationType === "fixed" &&
-                        fixedAmount !== "" &&
-                        !isNaN(parseFloat(fixedAmount)) &&
-                        lastPercentage >= 0)) && (
-                      <div
-                        className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
-                        style={{
-                          left: `${
-                            donationType === "fixed"
-                              ? dynamicMax > 0
+                  {/* Slider Section - Hide when custom amount input is visible */}
+                  {!showFixedAmountInput && (
+                    <div className="relative pt-10">
+                      {/* Custom Tooltip above slider */}
+                      {donationType === "percentage" && percentage >= 5 && (
+                        <div
+                          className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
+                          style={{
+                            left: `${
+                              dynamicMax > 5
                                 ? Math.min(
-                                    (lastPercentage / dynamicMax) * 100,
+                                    Math.max(
+                                      ((percentage - 5) / (dynamicMax - 5)) *
+                                        100,
+                                      0
+                                    ),
                                     100
                                   )
                                 : 0
-                              : dynamicMax > 0
-                              ? Math.min((percentage / dynamicMax) * 100, 100)
-                              : 0
-                          }%`,
-                          transform: `translate(-50%, 0)`,
-                        }}
-                      >
-                        {donationType === "fixed"
-                          ? (() => {
-                              // Calculate actual percentage to check if it exceeds 200%
-                              const numericValue = parseFloat(fixedAmount);
-                              const actualPercentage =
-                                basketTotal > 0
-                                  ? (numericValue / basketTotal) * 100
-                                  : 0;
-                              const displayPercentage =
-                                actualPercentage > 200
-                                  ? "200%+"
-                                  : numericValue === 0
-                                  ? "0%"
-                                  : `${lastPercentage.toFixed(1)}%`;
-                              return `${displayPercentage} (£${parseFloat(
-                                fixedAmount
-                              ).toFixed(2)})`;
-                            })()
-                          : `${percentage}% (£${(
-                              (basketTotal * percentage) /
-                              100
-                            ).toFixed(2)})`}
-                        {/* Arrow pointing down to slider handle - border layer */}
-                        <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
-                        {/* Arrow pointing down to slider handle - white fill */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
-                      </div>
-                    )}
+                            }%`,
+                            transform: `translate(-50%, 0)`,
+                          }}
+                        >
+                          {`${percentage}% (£${(
+                            (basketTotal * percentage) /
+                            100
+                          ).toFixed(2)})`}
+                          {/* Arrow pointing down to slider handle - border layer */}
+                          <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
+                          {/* Arrow pointing down to slider handle - white fill */}
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+                        </div>
+                      )}
 
-                    <Slider
-                      min={0}
-                      max={dynamicMax}
-                      step={dynamicMax <= 20 ? 5 : dynamicMax / 100}
-                      value={
-                        donationType === "fixed" ? lastPercentage : percentage
-                      }
-                      onChange={(value) => {
-                        // If user moves slider while in fixed mode, reset everything to default state
-                        if (donationType === "fixed") {
-                          setDonationType("percentage");
-                          setFixedAmount("");
-                          setDynamicMax(20); // Reset to default max
-                          setShowFixedAmountInput(false); // Hide the custom amount input
-                          // Always reset to default 10% when switching from fixed amount
-                          setPercentage(10);
-                          setLastPercentage(10);
-                        } else {
-                          handlePercentageChange(value);
-                        }
-                      }}
-                      marks={(() => {
-                        // Always show 5 marks: min, max, and 3 equally spaced between them
-                        const min = 0;
-                        const max = dynamicMax;
-                        const marks: Record<number, string> = {
-                          [min]: `${min}%`,
-                        };
-                        // Calculate 3 equally spaced marks between min and max
-                        for (let i = 1; i <= 3; i++) {
-                          const value = Math.round((max * i) / 4);
-                          marks[value] = `${value}%`;
-                        }
-                        marks[max] = `${max}%`;
-                        return marks;
-                      })()}
-                      className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px"
-                      tooltip={{
-                        open: false,
-                      }}
-                    />
-                  </div>
+                      <Slider
+                        min={5}
+                        max={dynamicMax}
+                        step={dynamicMax <= 25 ? 5 : dynamicMax / 100}
+                        value={percentage}
+                        onChange={handlePercentageChange}
+                        marks={(() => {
+                          // Fixed marks at 5%, 10%, 15%, 20%, 25% when max is 25
+                          if (dynamicMax === 25) {
+                            return {
+                              5: "5%",
+                              10: "10%",
+                              15: "15%",
+                              20: "20%",
+                              25: "25%",
+                            };
+                          }
+                          // For dynamic max > 25, show 5 marks: min, max, and 3 equally spaced between them
+                          const min = 5;
+                          const max = dynamicMax;
+                          const marks: Record<number, string> = {
+                            [min]: `${min}%`,
+                          };
+                          // Calculate 3 equally spaced marks between min and max
+                          for (let i = 1; i <= 3; i++) {
+                            const value = Math.round(
+                              (min + (max - min) * i) / 4
+                            );
+                            marks[value] = `${value}%`;
+                          }
+                          marks[max] = `${max}%`;
+                          return marks;
+                        })()}
+                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
+                        tooltip={{
+                          open: false,
+                        }}
+                      />
+                    </div>
+                  )}
 
                   {/* Fixed Amount Option */}
-                  <div className="text-center">
+                  <div className="space-y-3">
                     {!showFixedAmountInput ? (
-                      <button
-                        type="button"
-                        onClick={() => setShowFixedAmountInput(true)}
-                        className="text-sm font-medium transition-colors text-interactive hover:text-interactive/80 hover:underline"
-                      >
-                        Enter custom amount
-                      </button>
+                      <div className="flex justify-between items-center">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowFixedAmountInput(true);
+                            setFixedAmount("2.50");
+                            // Calculate percentage for £2.50
+                            if (basketTotal > 0) {
+                              const calculatedPercentage =
+                                (2.5 / basketTotal) * 100;
+                              const MAX_PERCENTAGE = 200;
+                              const cappedPercentage = Math.min(
+                                Math.max(calculatedPercentage, 0),
+                                MAX_PERCENTAGE
+                              );
+                              if (cappedPercentage > 25) {
+                                const roundedUpMax = Math.min(
+                                  Math.ceil(cappedPercentage / 5) * 5,
+                                  MAX_PERCENTAGE
+                                );
+                                setDynamicMax(roundedUpMax);
+                                setLastPercentage(
+                                  Math.min(cappedPercentage, roundedUpMax)
+                                );
+                              } else {
+                                setDynamicMax(25);
+                                const roundedPercentage =
+                                  Math.round(cappedPercentage / 5) * 5;
+                                setLastPercentage(
+                                  Math.max(Math.min(roundedPercentage, 25), 5)
+                                );
+                              }
+                              setDonationType("fixed");
+                            }
+                          }}
+                          className="text-sm font-medium transition-colors text-interactive hover:text-interactive/80 hover:underline"
+                        >
+                          Enter custom amount
+                        </button>
+                        <div className="flex flex-row-reverse gap-2 items-center">
+                          <Switch
+                            checked={showDonationSummary}
+                            onChange={setShowDonationSummary}
+                            size="small"
+                          />
+                          <span
+                            className="text-sm text-neutral-600"
+                            onClick={() =>
+                              setShowDonationSummary(!showDonationSummary)
+                            }
+                          >
+                            Round up
+                          </span>
+                        </div>
+                      </div>
                     ) : (
                       <div className="space-y-2">
                         <Input
@@ -500,8 +564,147 @@ const CheckoutDonation = forwardRef<
                 </div>
               )}
 
-              {/* Variant 2: Preset Buttons (Fixed Amounts) */}
+              {/* Variant 2: JustGiving-style Slider without round up switch */}
               {designVariant === "2" && (
+                <div>
+                  {/* Slider Section - Hide when custom amount input is visible */}
+                  {!showFixedAmountInput && (
+                    <div className="relative pt-10">
+                      {/* Custom Tooltip above slider */}
+                      {donationType === "percentage" && percentage >= 5 && (
+                        <div
+                          className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
+                          style={{
+                            left: `${
+                              dynamicMax > 5
+                                ? Math.min(
+                                    Math.max(
+                                      ((percentage - 5) / (dynamicMax - 5)) *
+                                        100,
+                                      0
+                                    ),
+                                    100
+                                  )
+                                : 0
+                            }%`,
+                            transform: `translate(-50%, 0)`,
+                          }}
+                        >
+                          {`${percentage}% (£${(
+                            (basketTotal * percentage) /
+                            100
+                          ).toFixed(2)})`}
+                          {/* Arrow pointing down to slider handle - border layer */}
+                          <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
+                          {/* Arrow pointing down to slider handle - white fill */}
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+                        </div>
+                      )}
+
+                      <Slider
+                        min={5}
+                        max={dynamicMax}
+                        step={dynamicMax <= 25 ? 5 : dynamicMax / 100}
+                        value={percentage}
+                        onChange={handlePercentageChange}
+                        marks={(() => {
+                          // Fixed marks at 5%, 10%, 15%, 20%, 25% when max is 25
+                          if (dynamicMax === 25) {
+                            return {
+                              5: "5%",
+                              10: "10%",
+                              15: "15%",
+                              20: "20%",
+                              25: "25%",
+                            };
+                          }
+                          // For dynamic max > 25, show 5 marks: min, max, and 3 equally spaced between them
+                          const min = 5;
+                          const max = dynamicMax;
+                          const marks: Record<number, string> = {
+                            [min]: `${min}%`,
+                          };
+                          // Calculate 3 equally spaced marks between min and max
+                          for (let i = 1; i <= 3; i++) {
+                            const value = Math.round(
+                              (min + (max - min) * i) / 4
+                            );
+                            marks[value] = `${value}%`;
+                          }
+                          marks[max] = `${max}%`;
+                          return marks;
+                        })()}
+                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
+                        tooltip={{
+                          open: false,
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Fixed Amount Option */}
+                  <div className="space-y-3">
+                    {!showFixedAmountInput ? (
+                      <div className="flex justify-center">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowFixedAmountInput(true);
+                            setFixedAmount("2.50");
+                            // Calculate percentage for £2.50
+                            if (basketTotal > 0) {
+                              const calculatedPercentage =
+                                (2.5 / basketTotal) * 100;
+                              const MAX_PERCENTAGE = 200;
+                              const cappedPercentage = Math.min(
+                                Math.max(calculatedPercentage, 0),
+                                MAX_PERCENTAGE
+                              );
+                              if (cappedPercentage > 25) {
+                                const roundedUpMax = Math.min(
+                                  Math.ceil(cappedPercentage / 5) * 5,
+                                  MAX_PERCENTAGE
+                                );
+                                setDynamicMax(roundedUpMax);
+                                setLastPercentage(
+                                  Math.min(cappedPercentage, roundedUpMax)
+                                );
+                              } else {
+                                setDynamicMax(25);
+                                const roundedPercentage =
+                                  Math.round(cappedPercentage / 5) * 5;
+                                setLastPercentage(
+                                  Math.max(Math.min(roundedPercentage, 25), 5)
+                                );
+                              }
+                              setDonationType("fixed");
+                            }
+                          }}
+                          className="text-sm font-medium transition-colors text-interactive hover:text-interactive/80 hover:underline"
+                        >
+                          Enter custom amount
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <Input
+                          ref={fixedAmountInputRef}
+                          prefix="£"
+                          placeholder="0.00"
+                          value={fixedAmount}
+                          onChange={handleFixedAmountChange}
+                          className="w-full"
+                          type="text"
+                          inputMode="decimal"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Variant 3: Preset Buttons (Fixed Amounts) */}
+              {designVariant === "3" && (
                 <div className="space-y-4">
                   <div className="grid grid-cols-5 gap-2">
                     {presetAmounts.map((amount) => (
@@ -533,8 +736,8 @@ const CheckoutDonation = forwardRef<
                 </div>
               )}
 
-              {/* Variant 3: Smart Presets (Percentage-based buttons) */}
-              {designVariant === "3" && (
+              {/* Variant 4: Smart Presets (Percentage-based buttons) */}
+              {designVariant === "4" && (
                 <div className="space-y-4">
                   <div className="grid grid-cols-4 gap-2">
                     {smartPresetPercentages.map((percent) => {
@@ -574,8 +777,8 @@ const CheckoutDonation = forwardRef<
                 </div>
               )}
 
-              {/* Variant 4: Experimental Interactive Donation Experience */}
-              {designVariant === "4" && (
+              {/* Variant 5: Experimental Interactive Donation Experience */}
+              {designVariant === "5" && (
                 <div className="space-y-6">
                   {/* Interactive Amount Cards */}
                   <div className="grid grid-cols-3 gap-3">
@@ -779,10 +982,11 @@ const CheckoutDonation = forwardRef<
               )}
             </div>
 
-            {/* Summary - Only visible for design variant 1 when fixed amount is used (percentage shows inline) */}
+            {/* Summary - Only visible for design variants 1 and 2 when fixed amount is used (percentage shows inline) */}
             {donationAmount > 0 &&
-              designVariant === "1" &&
-              donationType === "fixed" && (
+              (designVariant === "1" || designVariant === "2") &&
+              donationType === "fixed" &&
+              (designVariant === "2" || showDonationSummary) && (
                 <div className="pt-3 border-t border-neutral-200">
                   <div className="flex justify-between items-center text-sm">
                     <label className="text-sm font-medium text-neutral-900">

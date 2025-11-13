@@ -52,8 +52,8 @@ export const Checkout: React.FC = () => {
     {
       Component: CheckoutDonation,
       ref: donationRef,
-      title: "Donation",
-      subtitle: "Support our club with an optional donation",
+      title: "Contribution",
+      subtitle: "Support our club with an optional contribution",
       buttonType: "continue",
     },
     {
@@ -309,7 +309,7 @@ export const Checkout: React.FC = () => {
           </div>
         </aside>
       </Main>
-      <footer className="fixed bottom-0 left-0 right-0 z-40 py-4 rounded-t-md lg:hidden shadow-t bg-white/95 ring-black/10">
+      <footer className="fixed right-0 bottom-0 left-0 z-40 py-4 rounded-t-md lg:hidden shadow-t bg-white/95 ring-black/10">
         <Wrapper>
           <Button
             onClick={isOpen ? closeBasket : openBasket}
@@ -322,7 +322,7 @@ export const Checkout: React.FC = () => {
               fill="none"
               viewBox="0 0 24 24"
               className={`transition-all transform relative mx-auto  ${
-                isOpen ? " rotate-180 " : " -top-px "
+                isOpen ? "rotate-180" : "-top-px"
               }`}
               aria-label="Toggle basket"
             >
