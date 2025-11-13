@@ -8,7 +8,6 @@ import { Input, Slider } from "antd";
 import { motion } from "framer-motion";
 import FormHeader from "../form-header";
 import { useBasketContext } from "../basket/basket-context";
-import { orgName } from "../../org";
 
 export interface CheckoutDonationHandles {
   submitForm: () => Promise<boolean>;
@@ -266,69 +265,89 @@ const CheckoutDonation = forwardRef<
         />
         <div className="space-y-6 text-left">
           <div className="p-5 space-y-5 bg-white rounded-md ring-1 ring-black ring-opacity-5 shadow">
-            <p className="text-sm bg-rose-50/75 relative text-rose-600/90 px-[17px] py-[12px] rounded-[6px] m-[-16px] mb-[-2px]">
-              Your contribution helps {orgName} continue to run and improve our
-              activities.
-            </p>
+            <div className="flex gap-3.5 text-sm bg-rose-50/75 relative text-rose-600/90 px-[17px] py-[12px] rounded-[6px] m-[-16px] mb-[-2px]">
+              <svg
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="relative top-px -ml-1 text-rose-500 shrink-0 size-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M11.995 7.23319C10.5455 5.60999 8.12832 5.17335 6.31215 6.65972C4.49599 8.14609 4.2403 10.6312 5.66654 12.3892L11.995 18.25L18.3235 12.3892C19.7498 10.6312 19.5253 8.13046 17.6779 6.65972C15.8305 5.18899 13.4446 5.60999 11.995 7.23319Z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <p className="text-sm">
+                Would you like to help with the cost of running the club so more
+                funds go back into the players and community.
+              </p>
+            </div>
 
             <div className="space-y-5">
-              {/* Variant 1: Slider + Fixed Amount */}
+              {/* Variant 1: JustGiving-style Slider */}
               {designVariant === "1" && (
-                <>
-                  {/* Percentage Slider Option */}
-                  <div className="pb-6 space-y-3">
-                    <div className="flex justify-between items-center tabular-nums">
-                      <label className="text-sm font-medium text-neutral-900">
-                        Percentage
-                      </label>
-                      <span className="text-sm font-medium text-subtitle">
-                        {donationType === "fixed"
-                          ? `${lastPercentage}%`
-                          : `${percentage}%`}
-                        {donationType === "percentage" && percentage > 0 && (
-                          <span className="text-sm text-neutral-900 ml-1.5">
-                            · £{((basketTotal * percentage) / 100).toFixed(2)}
-                          </span>
-                        )}
-                      </span>
-                    </div>
+                <div>
+                  {/* Slider Section */}
+                  <div className="relative pt-10">
+                    {/* Custom Tooltip above slider */}
+                    {donationType === "percentage" && percentage > 0 && (
+                      <div
+                        className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
+                        style={{
+                          left: `${(percentage / 20) * 100}%`,
+                          transform: `translate(-50%, 0)`,
+                        }}
+                      >
+                        {percentage}% (£
+                        {((basketTotal * percentage) / 100).toFixed(2)})
+                        {/* Arrow pointing down to slider handle - border layer */}
+                        <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
+                        {/* Arrow pointing down to slider handle - white fill */}
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+                      </div>
+                    )}
+
                     <Slider
                       min={0}
-                      max={60}
-                      step={1}
+                      max={20}
+                      step={5}
                       value={
                         donationType === "fixed" ? lastPercentage : percentage
                       }
                       onChange={handlePercentageChange}
                       disabled={donationType === "fixed"}
                       marks={{
+                        0: "0%",
                         5: "5%",
                         10: "10%",
-                        30: "30%",
-                        50: "50%",
-                        60: "60%",
+                        15: "15%",
+                        20: "20%",
                       }}
+                      className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive"
                       tooltip={{
-                        formatter: (value) => `${value}%`,
+                        open: false,
                       }}
                     />
                   </div>
 
                   {/* Fixed Amount Option */}
-                  <div className="pt-3 border-t border-neutral-200">
+                  <div className="text-center">
                     {!showFixedAmountInput ? (
                       <button
                         type="button"
                         onClick={() => setShowFixedAmountInput(true)}
-                        className="text-sm text-center w-full font-medium text-[#005da2] hover:text-[#005da2]/80 hover:underline transition-colors"
+                        className="text-sm font-medium transition-colors text-interactive hover:text-interactive/80 hover:underline"
                       >
                         Enter custom amount
                       </button>
                     ) : (
-                      <div>
-                        <label className="block mb-2 text-sm font-medium text-neutral-900">
-                          Enter custom amount
-                        </label>
+                      <div className="space-y-2">
                         <Input
                           prefix="£"
                           placeholder="0.00"
@@ -341,7 +360,7 @@ const CheckoutDonation = forwardRef<
                       </div>
                     )}
                   </div>
-                </>
+                </div>
               )}
 
               {/* Variant 2: Preset Buttons (Fixed Amounts) */}
