@@ -236,6 +236,10 @@ const CheckoutDonation = forwardRef<
             // Handle zero case
             setDynamicMax(20);
             setLastPercentage(0);
+          } else {
+            // Handle invalid or negative values
+            setDynamicMax(20);
+            setLastPercentage(0);
           }
         }
       }
@@ -375,8 +379,8 @@ const CheckoutDonation = forwardRef<
                     {/* Custom Tooltip above slider */}
                     {((donationType === "percentage" && percentage >= 0) ||
                       (donationType === "fixed" &&
-                        fixedAmount &&
-                        parseFloat(fixedAmount) > 0 &&
+                        fixedAmount !== "" &&
+                        !isNaN(parseFloat(fixedAmount)) &&
                         lastPercentage >= 0)) && (
                       <div
                         className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
@@ -407,6 +411,8 @@ const CheckoutDonation = forwardRef<
                               const displayPercentage =
                                 actualPercentage > 200
                                   ? "200%+"
+                                  : numericValue === 0
+                                  ? "0%"
                                   : `${lastPercentage.toFixed(1)}%`;
                               return `${displayPercentage} (£${parseFloat(
                                 fixedAmount
@@ -459,7 +465,7 @@ const CheckoutDonation = forwardRef<
                         marks[max] = `${max}%`;
                         return marks;
                       })()}
-                      className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive"
+                      className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px"
                       tooltip={{
                         open: false,
                       }}
