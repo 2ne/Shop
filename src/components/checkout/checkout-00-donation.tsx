@@ -45,7 +45,20 @@ const CheckoutDonation = forwardRef<
     >(null);
     const [showFixedAmountInput, setShowFixedAmountInput] = useState(false);
     const [showDonationSummary, setShowDonationSummary] = useState(true); // Switch state - enabled by default
+    const [isMobile, setIsMobile] = useState(false); // Track if screen is less than 1024px
     const fixedAmountInputRef = useRef<InputRef>(null);
+
+    // Check screen size on mount and resize
+    useEffect(() => {
+      const checkScreenSize = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
+
+      checkScreenSize(); // Check on mount
+      window.addEventListener("resize", checkScreenSize);
+
+      return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
 
     // Helper function to parse price string to number
     const parsePrice = (priceString?: string): number => {
@@ -220,14 +233,7 @@ const CheckoutDonation = forwardRef<
         setFixedAmount(value);
         setSelectedPreset(null); // Clear preset when typing custom amount
         setSelectedSmartPreset(null); // Clear smart preset when typing custom amount
-        if (value === "") {
-          // Switch back to percentage when fixed amount is cleared (for variants 1 and 2)
-          if (designVariant === "1" || designVariant === "2") {
-            setDonationType("percentage");
-            setDynamicMax(25); // Reset to default max
-            setShowFixedAmountInput(false); // Hide the custom amount input and show slider
-          }
-        } else {
+        if (value !== "") {
           setDonationType("fixed");
           // Calculate what percentage this fixed amount represents
           const numericValue = parseFloat(value);
@@ -271,6 +277,18 @@ const CheckoutDonation = forwardRef<
             setLastPercentage(5);
           }
         }
+      }
+    };
+
+    const handleFixedAmountBlur = () => {
+      // Only switch back to slider on blur if the input is empty (for variants 1 and 2)
+      if (
+        (designVariant === "1" || designVariant === "2") &&
+        fixedAmount === ""
+      ) {
+        setDonationType("percentage");
+        setDynamicMax(25); // Reset to default max
+        setShowFixedAmountInput(false); // Hide the custom amount input and show slider
       }
     };
 
@@ -386,12 +404,29 @@ const CheckoutDonation = forwardRef<
         <div className="space-y-6 text-left">
           <div className="p-5 space-y-5 bg-white rounded-md ring-1 ring-black ring-opacity-5 shadow">
             <div className="flex gap-3.5 text-sm bg-rose-50/75 relative text-rose-600/90 px-[17px] py-[12px] rounded-[6px] m-[-16px] mb-[-2px]">
-              <svg
+              <motion.svg
                 width="24"
                 height="24"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 className="relative top-px -ml-1 text-rose-500 shrink-0 size-5"
+                animate={
+                  isMobile
+                    ? {
+                        scale: [1, 1.175, 1],
+                        opacity: [1, 0.8, 1],
+                      }
+                    : {}
+                }
+                transition={
+                  isMobile
+                    ? {
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }
+                    : {}
+                }
               >
                 <path
                   fillRule="evenodd"
@@ -402,7 +437,7 @@ const CheckoutDonation = forwardRef<
                   d="M11.995 7.23319C10.5455 5.60999 8.12832 5.17335 6.31215 6.65972C4.49599 8.14609 4.2403 10.6312 5.66654 12.3892L11.995 18.25L18.3235 12.3892C19.7498 10.6312 19.5253 8.13046 17.6779 6.65972C15.8305 5.18899 13.4446 5.60999 11.995 7.23319Z"
                   clipRule="evenodd"
                 ></path>
-              </svg>
+              </motion.svg>
               <p className="text-sm">
                 Would you like to help with the cost of running the club so more
                 funds go back into the players and community.
@@ -554,6 +589,7 @@ const CheckoutDonation = forwardRef<
                           placeholder="0.00"
                           value={fixedAmount}
                           onChange={handleFixedAmountChange}
+                          onBlur={handleFixedAmountBlur}
                           className="w-full"
                           type="text"
                           inputMode="decimal"
@@ -693,6 +729,7 @@ const CheckoutDonation = forwardRef<
                           placeholder="0.00"
                           value={fixedAmount}
                           onChange={handleFixedAmountChange}
+                          onBlur={handleFixedAmountBlur}
                           className="w-full"
                           type="text"
                           inputMode="decimal"

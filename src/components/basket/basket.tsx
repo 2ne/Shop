@@ -29,7 +29,7 @@ export const BasketTotals: React.FC = () => {
     <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
       {donationAmount > 0 && (
         <>
-          <div className="text-neutral-500">Donation</div>
+          <div className="text-neutral-500">Contribution</div>
           <div className="text-neutral-500">£{donationAmount.toFixed(2)}</div>
         </>
       )}
@@ -141,21 +141,24 @@ const Basket: React.FC = () => {
                     src={item.image}
                     alt={item.title}
                     className={`object-contain object-center w-16 h-auto max-h-[4rem] rounded ${
-                      itemError ? "grayscale" : ""}`}
+                      itemError ? "grayscale" : ""
+                    }`}
                   />
                 )}
                 <div className="grid flex-1 items-center min-w-0 text-sm">
                   <div>
                     <div
                       className={`font-medium ${
-                        itemError ? "text-rose-600" : ""}`}
+                        itemError ? "text-rose-600" : ""
+                      }`}
                     >
                       {item.title}
                     </div>
                     {item.subTitle && (
                       <div
                         className={`text-neutral-500 ${
-                          itemError ? "text-rose-500" : ""}`}
+                          itemError ? "text-rose-500" : ""
+                        }`}
                       >
                         {item.subTitle}
                       </div>
@@ -185,7 +188,8 @@ const Basket: React.FC = () => {
                           }
                           type="text"
                           className={`hover:!bg-neutral-100 !rounded-full ${
-                            isAnimating ? "pointer-events-none" : ""}`}
+                            isAnimating ? "pointer-events-none" : ""
+                          }`}
                           size="small"
                         ></Button>
                         <AnimatePresence initial={false} mode="wait">
@@ -223,7 +227,8 @@ const Basket: React.FC = () => {
                           }
                           type="text"
                           className={`hover:!bg-neutral-100 !rounded-full ${
-                            isAnimating ? "pointer-events-none" : ""}`}
+                            isAnimating ? "pointer-events-none" : ""
+                          }`}
                           size="small"
                         ></Button>
                       </div>
