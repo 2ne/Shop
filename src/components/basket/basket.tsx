@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export const BasketTotals: React.FC = () => {
   const { donationAmount, basketItems } = useBasketContext();
-  
+
   // Helper function to parse price string to number
   const parsePrice = (priceString?: string): number => {
     if (!priceString) return 0;
@@ -22,13 +22,11 @@ export const BasketTotals: React.FC = () => {
     const itemPrice = parsePrice(item.cost || item.price);
     return total + itemPrice;
   }, 0);
-  
+
   const totalWithDonation = basketTotal + donationAmount;
 
   return (
     <div className="grid grid-cols-2 [&>*:nth-child(even)]:text-right gap-y-1.5 text-sm">
-      <div className="text-neutral-500">Monthly cost</div>
-      <div className="text-neutral-500">£{basketTotal.toFixed(2)}</div>
       {donationAmount > 0 && (
         <>
           <div className="text-neutral-500">Donation</div>
@@ -94,7 +92,7 @@ const Basket: React.FC = () => {
       )}
       <div className="divide-y">
         {basketItems.length === 0 ? (
-          <div className="grid gap-4 text-center h-52 sm:h-64 place-items-center text-neutral-500/75">
+          <div className="grid gap-4 place-items-center h-52 text-center sm:h-64 text-neutral-500/75">
             <div className="grid gap-2 place-items-center">
               <div>
                 <svg
@@ -143,24 +141,21 @@ const Basket: React.FC = () => {
                     src={item.image}
                     alt={item.title}
                     className={`object-contain object-center w-16 h-auto max-h-[4rem] rounded ${
-                      itemError ? " grayscale " : ""
-                    }`}
+                      itemError ? "grayscale" : ""}`}
                   />
                 )}
-                <div className="grid items-center flex-1 min-w-0 text-sm">
+                <div className="grid flex-1 items-center min-w-0 text-sm">
                   <div>
                     <div
                       className={`font-medium ${
-                        itemError ? " text-rose-600 " : ""
-                      }`}
+                        itemError ? "text-rose-600" : ""}`}
                     >
                       {item.title}
                     </div>
                     {item.subTitle && (
                       <div
                         className={`text-neutral-500 ${
-                          itemError ? " text-rose-500 " : ""
-                        }`}
+                          itemError ? "text-rose-500" : ""}`}
                       >
                         {item.subTitle}
                       </div>
@@ -190,8 +185,7 @@ const Basket: React.FC = () => {
                           }
                           type="text"
                           className={`hover:!bg-neutral-100 !rounded-full ${
-                            isAnimating ? "pointer-events-none" : ""
-                          }`}
+                            isAnimating ? "pointer-events-none" : ""}`}
                           size="small"
                         ></Button>
                         <AnimatePresence initial={false} mode="wait">
@@ -229,8 +223,7 @@ const Basket: React.FC = () => {
                           }
                           type="text"
                           className={`hover:!bg-neutral-100 !rounded-full ${
-                            isAnimating ? "pointer-events-none" : ""
-                          }`}
+                            isAnimating ? "pointer-events-none" : ""}`}
                           size="small"
                         ></Button>
                       </div>
@@ -238,7 +231,7 @@ const Basket: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => handleRemoveItem(item.id)}
-                          className="grid transition-colors rounded-full w-7 h-7 place-items-center hover:bg-neutral-200"
+                          className="grid place-items-center w-7 h-7 rounded-full transition-colors hover:bg-neutral-200"
                         >
                           <svg
                             width="24"
@@ -246,7 +239,7 @@ const Basket: React.FC = () => {
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-5 h-5 ml-px"
+                            className="ml-px w-5 h-5"
                           >
                             <path
                               d="M5.75 7.75L6.59115 17.4233C6.68102 18.4568 7.54622 19.25 8.58363 19.25H14.4164C15.4538 19.25 16.319 18.4568 16.4088 17.4233L17.25 7.75H5.75Z"
@@ -355,7 +348,7 @@ const Basket: React.FC = () => {
         )}
       </div>
       {!isCheckout && (
-        <div className="sticky z-10 px-4 py-4 mt-auto -mx-4 -mb-4 sm:px-5 sm:py-5 sm:-mx-5 -bottom-4 bg-white/95">
+        <div className="sticky -bottom-4 z-10 px-4 py-4 -mx-4 mt-auto -mb-4 sm:px-5 sm:py-5 sm:-mx-5 bg-white/95">
           <Button
             size="large"
             block
