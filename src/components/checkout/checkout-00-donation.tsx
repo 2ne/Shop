@@ -455,8 +455,8 @@ const CheckoutDonation = forwardRef<
                       {donationType === "percentage" && percentage >= 5 && (
                         <div
                           className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
-                          style={{
-                            left: `${
+                          style={(() => {
+                            const positionPercent =
                               dynamicMax > 5
                                 ? Math.min(
                                     Math.max(
@@ -466,19 +466,70 @@ const CheckoutDonation = forwardRef<
                                     ),
                                     100
                                   )
-                                : 0
-                            }%`,
-                            transform: `translate(-50%, 0)`,
-                          }}
+                                : 0;
+
+                            const isAtMin = percentage === 5;
+                            const isAtMax = percentage === dynamicMax;
+
+                            if (isAtMin) {
+                              // Position to the right when at minimum
+                              return {
+                                left: `${positionPercent}%`,
+                                transform: `translate(0, 0)`,
+                              };
+                            } else if (isAtMax) {
+                              // Position to the left when at maximum
+                              return {
+                                right: `${100 - positionPercent}%`,
+                                transform: `translate(0, 0)`,
+                              };
+                            } else {
+                              // Center otherwise
+                              return {
+                                left: `${positionPercent}%`,
+                                transform: `translate(-50%, 0)`,
+                              };
+                            }
+                          })()}
                         >
                           {`${percentage}% (£${(
                             (basketTotal * percentage) /
                             100
                           ).toFixed(2)})`}
                           {/* Arrow pointing down to slider handle - border layer */}
-                          <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
+                          <div
+                            className="absolute top-full mt-px w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"
+                            style={{
+                              left:
+                                percentage === 5
+                                  ? "0"
+                                  : percentage === dynamicMax
+                                  ? "auto"
+                                  : "50%",
+                              right: percentage === dynamicMax ? "0" : "auto",
+                              transform:
+                                percentage === 5 || percentage === dynamicMax
+                                  ? "translateX(0)"
+                                  : "translateX(-50%)",
+                            }}
+                          ></div>
                           {/* Arrow pointing down to slider handle - white fill */}
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+                          <div
+                            className="absolute top-full mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"
+                            style={{
+                              left:
+                                percentage === 5
+                                  ? "0"
+                                  : percentage === dynamicMax
+                                  ? "auto"
+                                  : "50%",
+                              right: percentage === dynamicMax ? "0" : "auto",
+                              transform:
+                                percentage === 5 || percentage === dynamicMax
+                                  ? "translateX(0)"
+                                  : "translateX(-50%)",
+                            }}
+                          ></div>
                         </div>
                       )}
 
@@ -610,8 +661,8 @@ const CheckoutDonation = forwardRef<
                       {donationType === "percentage" && percentage >= 5 && (
                         <div
                           className="absolute top-0 px-3 py-1.5 bg-white rounded shadow-md shadow-neutral-950/5 ring-1 ring-neutral-950/10 text-sm font-medium text-neutral-700 tabular-nums whitespace-nowrap z-10"
-                          style={{
-                            left: `${
+                          style={(() => {
+                            const positionPercent =
                               dynamicMax > 5
                                 ? Math.min(
                                     Math.max(
@@ -621,19 +672,70 @@ const CheckoutDonation = forwardRef<
                                     ),
                                     100
                                   )
-                                : 0
-                            }%`,
-                            transform: `translate(-50%, 0)`,
-                          }}
+                                : 0;
+
+                            const isAtMin = percentage === 5;
+                            const isAtMax = percentage === dynamicMax;
+
+                            if (isAtMin) {
+                              // Position to the right when at minimum
+                              return {
+                                left: `${positionPercent}%`,
+                                transform: `translate(0, 0)`,
+                              };
+                            } else if (isAtMax) {
+                              // Position to the left when at maximum
+                              return {
+                                right: `${100 - positionPercent}%`,
+                                transform: `translate(0, 0)`,
+                              };
+                            } else {
+                              // Center otherwise
+                              return {
+                                left: `${positionPercent}%`,
+                                transform: `translate(-50%, 0)`,
+                              };
+                            }
+                          })()}
                         >
                           {`${percentage}% (£${(
                             (basketTotal * percentage) /
                             100
                           ).toFixed(2)})`}
                           {/* Arrow pointing down to slider handle - border layer */}
-                          <div className="absolute top-full left-1/2 mt-px -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"></div>
+                          <div
+                            className="absolute top-full mt-px w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-transparent border-t-neutral-950/10"
+                            style={{
+                              left:
+                                percentage === 5
+                                  ? "0"
+                                  : percentage === dynamicMax
+                                  ? "auto"
+                                  : "50%",
+                              right: percentage === dynamicMax ? "0" : "auto",
+                              transform:
+                                percentage === 5 || percentage === dynamicMax
+                                  ? "translateX(0)"
+                                  : "translateX(-50%)",
+                            }}
+                          ></div>
                           {/* Arrow pointing down to slider handle - white fill */}
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+                          <div
+                            className="absolute top-full mt-0 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"
+                            style={{
+                              left:
+                                percentage === 5
+                                  ? "0"
+                                  : percentage === dynamicMax
+                                  ? "auto"
+                                  : "50%",
+                              right: percentage === dynamicMax ? "0" : "auto",
+                              transform:
+                                percentage === 5 || percentage === dynamicMax
+                                  ? "translateX(0)"
+                                  : "translateX(-50%)",
+                            }}
+                          ></div>
                         </div>
                       )}
 
