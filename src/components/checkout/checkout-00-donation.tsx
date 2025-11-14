@@ -566,7 +566,7 @@ const CheckoutDonation = forwardRef<
                           marks[max] = `${max}%`;
                           return marks;
                         })()}
-                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
+                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/75 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
                         tooltip={{
                           open: false,
                         }}
@@ -772,7 +772,7 @@ const CheckoutDonation = forwardRef<
                           marks[max] = `${max}%`;
                           return marks;
                         })()}
-                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/90 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
+                        className="[&_.ant-slider-mark-text]:hidden [&_.ant-slider-step_span:first-child]:hidden [&_.ant-slider-step_span:last-child]:hidden [&_.ant-slider-rail]:h-2 [&_.ant-slider-track]:h-2 [&_.ant-slider-track]:rounded-full [&_.ant-slider-rail]:rounded-full [&_.ant-slider-handle::after]:!size-4 [&_.ant-slider-handle]:!size-4 [&_.ant-slider-handle::after]:!ring-[3px] [&_.ant-slider-step]:top-1.5 [&_.ant-slider-dot-active]:border-interactive [&_.ant-slider-track]:bg-interactive/75 [&_.ant-slider-track]:hover:bg-interactive/75 [&_.ant-slider-dot]:!size-2 [&_.ant-slider-dot]:border-[1px] [&_.ant-slider-dot]:mt-px mx-0"
                         tooltip={{
                           open: false,
                         }}
